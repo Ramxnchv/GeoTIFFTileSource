@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dist/webimage-DKbHVJ8d.js
-import { B as r } from "./main-D9QVMkP0.js";
-========
-import { B as r } from "./main-DxWiebmb.js";
->>>>>>>> upstream/main:dist/webimage-Cd6wpsGn.js
+import { B as r } from "./main-B4lYUHQK.js";
 class s extends r {
   constructor() {
     if (super(), typeof createImageBitmap > "u")
@@ -21,8 +17,4 @@ class s extends r {
 export {
   s as default
 };
-<<<<<<<< HEAD:dist/webimage-DKbHVJ8d.js
-//# sourceMappingURL=webimage-DKbHVJ8d.js.map
-========
-//# sourceMappingURL=webimage-Cd6wpsGn.js.map
->>>>>>>> upstream/main:dist/webimage-Cd6wpsGn.js
+//# sourceMappingURL=webimage-B_M95m8a.js.map

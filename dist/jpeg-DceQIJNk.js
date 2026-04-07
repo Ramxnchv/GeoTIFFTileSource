@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dist/jpeg-B5TrfsqT.js
-import { B as re } from "./main-D9QVMkP0.js";
-========
-import { B as re } from "./main-DxWiebmb.js";
->>>>>>>> upstream/main:dist/jpeg-DO3Y8Jas.js
+import { B as re } from "./main-B4lYUHQK.js";
 const O = new Int32Array([
   0,
   1,
@@ -516,8 +512,4 @@ class fe extends re {
 export {
   fe as default
 };
-<<<<<<<< HEAD:dist/jpeg-B5TrfsqT.js
-//# sourceMappingURL=jpeg-B5TrfsqT.js.map
-========
-//# sourceMappingURL=jpeg-DO3Y8Jas.js.map
->>>>>>>> upstream/main:dist/jpeg-DO3Y8Jas.js
+//# sourceMappingURL=jpeg-DceQIJNk.js.map

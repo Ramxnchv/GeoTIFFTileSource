@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dist/packbits-CevMF2Sq.js
-import { B as c } from "./main-D9QVMkP0.js";
-========
-import { B as c } from "./main-DxWiebmb.js";
->>>>>>>> upstream/main:dist/packbits-BiMafHaH.js
+import { B as c } from "./main-B4lYUHQK.js";
 class l extends c {
   decodeBlock(s) {
     const n = new DataView(s), r = [];
@@ -26,8 +22,4 @@ class l extends c {
 export {
   l as default
 };
-<<<<<<<< HEAD:dist/packbits-CevMF2Sq.js
-//# sourceMappingURL=packbits-CevMF2Sq.js.map
-========
-//# sourceMappingURL=packbits-BiMafHaH.js.map
->>>>>>>> upstream/main:dist/packbits-BiMafHaH.js
+//# sourceMappingURL=packbits-DwwHHdtG.js.map
