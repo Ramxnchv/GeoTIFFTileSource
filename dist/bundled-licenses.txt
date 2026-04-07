@@ -33,12 +33,12 @@ SOFTWARE.
 
 ---
 
-Name: geotiff-tilesource
-Version: 2.3.0
-License: null
+Name: @ramxnchv/geotiff-tilesource
+Version: 2.3.1
+License: MIT
 Private: false
-Description: A plugin tilesource for OpenSeadragon that uses geotiff.js to provide serverless access to view compatible local or remote TIFF files
-Repository: https://github.com/pearcetm/GeoTIFFTileSource
+Description: A plugin tilesource for OpenSeadragon that uses geotiff.js to provide serverless access to view compatible local or remote TIFF files. Fork of pearcetm/GeoTIFFTileSource with OSD v6 + worker-ImageBitmap optimizations.
+Repository: https://github.com/vexcel-data/GeoTIFFTileSource
 License Copyright:
 ===
 

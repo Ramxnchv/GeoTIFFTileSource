@@ -1,5 +1,5 @@
 import { i as r } from "./pako.esm-D_m2s4NW.js";
-import { B as a } from "./main-CvinGM6s.js";
+import { B as a } from "./main-D9QVMkP0.js";
 class s extends a {
   decodeBlock(e) {
     return r(new Uint8Array(e)).buffer;
@@ -8,4 +8,4 @@ class s extends a {
 export {
   s as default
 };
-//# sourceMappingURL=deflate-CqDVFXkE.js.map
+//# sourceMappingURL=deflate-CHW7ks2g.js.map

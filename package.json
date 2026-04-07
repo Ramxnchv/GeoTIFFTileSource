@@ -1,7 +1,7 @@
 {
-  "name": "geotiff-tilesource",
+  "name": "@ramxnchv/geotiff-tilesource",
   "version": "2.3.1",
-  "description": "A plugin tilesource for OpenSeadragon that uses geotiff.js to provide serverless access to view compatible local or remote TIFF files",
+  "description": "A plugin tilesource for OpenSeadragon that uses geotiff.js to provide serverless access to view compatible local or remote TIFF files. Fork of pearcetm/GeoTIFFTileSource with OSD v6 + worker-ImageBitmap optimizations.",
   "files": [
     "dist"
   ],
@@ -42,6 +42,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pearcetm/GeoTIFFTileSource"
-  }
+    "url": "https://github.com/vexcel-data/GeoTIFFTileSource"
+  },
+  "license": "MIT"
 }

@@ -332,12 +332,17 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
       this.regionToTiffRaster(level, context.tile.x, context.tile.y, abortController.signal)
         .then(async (tiffRaster) => {
           if (isV6) {
-            // OSD v6+: hand off typed data; renderer/converter graph will take it from here.
-            context.finish(tiffRaster, request, tiffRaster.getType());
+            // ── OSD v6 fast path ────────────────────────────────────────────────
+            // Convert raster → ImageBitmap inside a worker using OffscreenCanvas.
+            // Band ArrayBuffers are transferred zero-copy; the main thread is never
+            // blocked on RGBA pixel processing. OSD's converter graph is bypassed
+            // entirely — the WebGL / canvas drawer receives a ready-to-use bitmap.
+            const imageBitmap = await RawTiffAPI.tiffRasterToImageBitmapViaWorker(context.tile, tiffRaster);
+            context.finish(imageBitmap, request, "imageBitmap");
             return;
           }
 
-          // OSD < v6: manually convert via tiff.js API to something legacy OSD can render (canvas is safest).
+          // OSD < v6: canvas2d is the required output type.
           const ctx = await Promise.resolve(RawTiffAPI.rasterToContext2d(context.tile, tiffRaster));
           context.finish(ctx.canvas);
         })

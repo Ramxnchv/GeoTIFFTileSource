@@ -1,5 +1,5 @@
 import { i as oA } from "./pako.esm-D_m2s4NW.js";
-import { g as sA, L as DA, a as gA } from "./tiff.worker-BPpoNmhb.js";
+import { g as sA, L as DA, a as gA } from "./tiff.worker-CLseKfFU.js";
 import { B as nA } from "./basedecoder-PoXbLGBV.js";
 var iA = { exports: {} };
 (function(j) {
@@ -1024,4 +1024,4 @@ export {
   lA as default,
   hA as zstd
 };
-//# sourceMappingURL=lerc-Ci3PIh_t.js.map
+//# sourceMappingURL=lerc-DxQhfoV0.js.map

@@ -304,9 +304,11 @@ export function installRawTiffPlugin(OpenSeadragon, opts = {}) {
 
   const workerPoolOptions = Object.assign({
     enabled: true,
+    // Use up to (N-1) cores, capped at 8. Leaving one core for the main thread.
+    // More workers = more concurrent raster→ImageBitmap conversions off-thread.
     size: (typeof navigator !== "undefined" && navigator.hardwareConcurrency)
-      ? Math.max(1, Math.min(4, Math.ceil(navigator.hardwareConcurrency / 2)))
-      : 2,
+      ? Math.max(2, Math.min(navigator.hardwareConcurrency - 1, 8))
+      : 4,
     createWorker: null,
     transferInput: false,
     enableRawTiffToImageBitmap: true,
@@ -479,6 +481,75 @@ export function installRawTiffPlugin(OpenSeadragon, opts = {}) {
 
     const raster = await decodeRawTiffMain(tile, rawTiff);
     return await rasterToImageBitmap(tile, raster);
+  }
+
+  /**
+   * Convert a TiffRaster to ImageBitmap using a worker (OffscreenCanvas).
+   *
+   * This is the hot-path for OSD v6: band ArrayBuffers are transferred zero-copy
+   * to the worker, which renders them into an OffscreenCanvas and returns an
+   * ImageBitmap transferable. The main thread is never blocked.
+   *
+   * Falls back to main-thread rasterToImageBitmap when no worker pool is available.
+   *
+   * @param {*} tile
+   * @param {TiffRaster} raster
+   * @returns {Promise<ImageBitmap>}
+   */
+  async function __rt_tiffRasterToImageBitmapViaWorker(tile, raster) {
+    const pool = getWorkerPool();
+    if (!pool) return rasterToImageBitmap(tile, raster);
+
+    const hints = (raster && raster.hints) || {};
+    const extFmt = resolveExternalFormat(tile, raster);
+    const mergedFmt = deepMerge(defaults.format, extFmt || null);
+    const hintsOut = Object.assign({}, hints, { formatResolved: mergedFmt });
+
+    // Serialize bands for transfer. We deduplicate shared underlying ArrayBuffers
+    // to avoid "same buffer listed twice in transfer list" errors when geotiff.js
+    // allocates bands as views of one bigger buffer (rare but possible).
+    const seenBuffers = new Set();
+    const transfers = [];
+    const bandDescs = raster.bands.map((arr) => {
+      if (!seenBuffers.has(arr.buffer)) {
+        seenBuffers.add(arr.buffer);
+        transfers.push(arr.buffer);
+      }
+      return {
+        ctor: arr.constructor?.name || "Uint8Array",
+        buffer: arr.buffer,
+        byteOffset: arr.byteOffset,
+        length: arr.length,
+      };
+    });
+
+    const rasterPayload = {
+      width: raster.width,
+      height: raster.height,
+      bands: bandDescs,
+      samplesPerPixel: raster.samplesPerPixel,
+      bitsPerSample: raster.bitsPerSample,
+      sampleFormat: raster.sampleFormat,
+      photometricInterpretation: raster.photometricInterpretation,
+      colorMap: raster.colorMap,
+      fileDirectory: raster.fileDirectory,
+    };
+
+    const out = await pool.request("rasterToImageBitmap", { raster: rasterPayload, hints: hintsOut }, transfers);
+
+    if (out.kind === "imageBitmap") return out.imageBitmap;
+
+    // OffscreenCanvas not available in the worker: reconstruct on main thread.
+    if (out.kind === "rgba8") {
+      if (typeof createImageBitmap !== "function") {
+        throw new Error("[RawTiffPlugin] createImageBitmap is not available.");
+      }
+      const rgba = new Uint8ClampedArray(out.rgbaBuffer, out.rgbaByteOffset || 0, out.rgbaLength);
+      const imgData = new ImageData(rgba, out.width, out.height);
+      return await createImageBitmap(imgData);
+    }
+
+    throw new Error("[RawTiffPlugin] Worker returned unsupported result kind for rasterToImageBitmap.");
   }
 
   async function __rt_rawTiffToGpuTextureSet(tile, rawTiff) {
@@ -699,7 +770,9 @@ export function installRawTiffPlugin(OpenSeadragon, opts = {}) {
     }
 
     $.converter.learn("tiffRaster", "context2d", (tile, raster) => rasterToContext2d(tile, raster), 2, 10);
-    $.converter.learn("tiffRaster", "imageBitmap", (tile, raster) => rasterToImageBitmap(tile, raster), 1, 50);
+    // Use worker-based conversion: RGBA rendering + OffscreenCanvas.transferToImageBitmap()
+    // happens entirely off the main thread → no UI jank, no tile pipeline timeouts.
+    $.converter.learn("tiffRaster", "imageBitmap", (tile, raster) => __rt_tiffRasterToImageBitmapViaWorker(tile, raster), 1, 10);
 
     $.converter.learn("rawTiff", "gpuTextureSet", (tile, raw) => __rt_rawTiffToGpuTextureSet(tile, raw), 1, 8);
     $.converter.learn("tiffRaster", "gpuTextureSet", (tile, raster) => __rt_tiffRasterToGpuTextureSet(tile, raster), 1, 12);
@@ -720,6 +793,7 @@ export function installRawTiffPlugin(OpenSeadragon, opts = {}) {
     rasterToRGBA8,
     rasterToContext2d,
     rasterToImageBitmap,
+    tiffRasterToImageBitmapViaWorker: __rt_tiffRasterToImageBitmapViaWorker,
 
     getWorkerPool,
     terminateWorkerPool() {

@@ -624,6 +624,39 @@ workerRef.onmessage = async (ev) => {
       return;
     }
 
+    // ─── Fast path: decode raster → ImageBitmap entirely in the worker ──────────
+    // Avoids shipping pixel data back to the main thread before rendering.
+    // Uses OffscreenCanvas.transferToImageBitmap() when available (all modern browsers).
+    if (op === "rasterToImageBitmap") {
+      const rasterPayload = payload.raster;
+      const hints = payload.hints || {};
+      const raster = Object.assign({}, rasterPayload, { bands: reviveBands(rasterPayload.bands) });
+      const format = resolveFormatFromHints(hints);
+      const rgba = rasterToRGBA8_ImageMode(raster, hints, format);
+
+      // Ensure Uint8ClampedArray (required by ImageData constructor)
+      const rgba8 = rgba instanceof Uint8ClampedArray
+        ? rgba
+        : new Uint8ClampedArray(rgba.buffer, rgba.byteOffset, rgba.byteLength);
+
+      if (typeof OffscreenCanvas === "function") {
+        const canvas = new OffscreenCanvas(raster.width, raster.height);
+        const ctx = canvas.getContext("2d", { willReadFrequently: false });
+        ctx.putImageData(new ImageData(rgba8, raster.width, raster.height), 0, 0);
+        const bmp = canvas.transferToImageBitmap();
+        workerRef.postMessage({ id, ok: true, result: { kind: "imageBitmap", imageBitmap: bmp } }, [bmp]);
+      } else {
+        // OffscreenCanvas not available (very old browser): ship raw RGBA bytes back.
+        // Main thread will call createImageBitmap() there.
+        const buf = rgba8.buffer.slice(rgba8.byteOffset, rgba8.byteOffset + rgba8.byteLength);
+        workerRef.postMessage(
+          { id, ok: true, result: { kind: "rgba8", width: raster.width, height: raster.height, rgbaBuffer: buf, rgbaByteOffset: 0, rgbaLength: buf.byteLength } },
+          [buf]
+        );
+      }
+      return;
+    }
+
     throw new Error(`[RawTiffPlugin] Unknown worker op: ${op}`);
   } catch (e) {
     workerRef.postMessage({ id, ok: false, error: errorToPlain(e) });
