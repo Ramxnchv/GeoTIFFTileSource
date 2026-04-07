@@ -173,6 +173,9 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
       );
       const t3 = performance.now();
       console.log(`⏱️ [${inputName}] getImage×${imageCount}: ${(t3-t2).toFixed(0)}ms`);
+      console.log(`⏱️ [${inputName}] IFD dims: ${images.map((im, idx) => `#${idx}:${im.getWidth()}×${im.getHeight()}`).join(', ')}`);
+      const hasSubIFDs = images.some(im => { const fd = im.fileDirectory || {}; return fd.SubIFDs && fd.SubIFDs.length > 0; });
+      console.log(`⏱️ [${inputName}] hasSubIFDs: ${hasSubIFDs}, hasGetSubIFDs: ${typeof images[0]?.getSubIFDs === 'function'}`);
 
       // Reuse the already-opened TIFF connection instead of opening a second one.
       // Previously: fromUrl(input) was called again here, doubling the initial range requests.
@@ -181,7 +184,7 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
       let filtered = this.userDefinedImagesFilter(images, opts);
       filtered = filtered.filter(
         (image) =>
-          image.fileDirectory.photometricInterpretation !==
+          image.fileDirectory.PhotometricInterpretation !==
           globals.photometricInterpretations.TransparencyMask
       );
 
@@ -557,7 +560,11 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
         const r0 = imgs[0].getWidth() / imgs[0].getHeight();
         for (const im of imgs) {
           const r = im.getWidth() / im.getHeight();
-          if (Math.abs(r - r0) > 0.01) return false;
+          // Use a relaxed tolerance for small overview levels where integer
+          // rounding causes natural aspect-ratio drift (e.g. 69×45 vs 8820×5668).
+          const size = Math.max(im.getWidth(), im.getHeight());
+          const tol = size < 256 ? 0.05 : 0.01;
+          if (Math.abs(r - r0) > tol) return false;
         }
         return true;
       };
@@ -607,13 +614,14 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
         strategy = "single";
       }
 
-      if (strategy === "subifd") {
-        logOnce(`${chosenPlane.__key}-subifd-warn`, `[GeoTIFFTileSource] File was detected to contain SubIFD pyramids, 
-however, geotiff.js does not support reading SubIFD files and is unable to display the pyramid. Only the
-high-resolution lowest level will be shown. Note that loading such data can crash your browser due to memory consumption.`, 'warn');
-        strategy = "ifd";
+      if (strategy === "subifd" && typeof chosenPlane.getSubIFDs !== "function") {
+        // geotiff.js in this version doesn't expose getSubIFDs() — can't read SubIFD overviews.
+        // Fall back to "single" (not "ifd", which would return wrong levels).
+        logOnce(`${chosenPlane.__key}-subifd-warn`, `[GeoTIFFTileSource] SubIFD pyramids detected but geotiff.js doesn't expose getSubIFDs(). Falling back to single level.`, 'warn');
+        strategy = "single";
       }
 
+      console.log(`⏱️ resolveLayout: strategy=${strategy}, effectiveIfdPyramid=${effectiveIfdPyramid}, anyHasSubIFD=${anyHasSubIFD}, uniqueCount=${uniqueBySizeFull.length}, planes=${planes.length}`);
       return { strategy, planes, chosenPlane, ifdLevelsLargestToSmallest };
     }
 
