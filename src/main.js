@@ -215,6 +215,20 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
         return accumulator;
       }, []);
 
+      // Re-incorporate orphan overview IFDs that got split from the primary group
+      // due to integer-rounding drift at very small sizes (e.g. Condor 95×13 vs 48462×6150).
+      if (aspectRatioSets.length > 1) {
+        const primarySmallestW = Math.min(...aspectRatioSets[0].images.map(im => im.getWidth()));
+        for (let i = aspectRatioSets.length - 1; i >= 1; i--) {
+          const set = aspectRatioSets[i];
+          // A single image smaller than the primary group's smallest is likely an overview, not a separate scene.
+          if (set.images.length === 1 && set.images[0].getWidth() < primarySmallestW) {
+            aspectRatioSets[0].images.push(set.images[0]);
+            aspectRatioSets.splice(i, 1);
+          }
+        }
+      }
+
       const imageSets = aspectRatioSets.map((set) => set.images);
       const out = [];
 
@@ -560,11 +574,13 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
         const r0 = imgs[0].getWidth() / imgs[0].getHeight();
         for (const im of imgs) {
           const r = im.getWidth() / im.getHeight();
-          // Use a relaxed tolerance for small overview levels where integer
-          // rounding causes natural aspect-ratio drift (e.g. 69×45 vs 8820×5668).
-          const size = Math.max(im.getWidth(), im.getHeight());
-          const tol = size < 256 ? 0.05 : 0.01;
-          if (Math.abs(r - r0) > tol) return false;
+          // Use relative tolerance so panoramic images (high aspect ratio) aren't penalised.
+          // Use the *minimum* dimension to decide relaxation — for panoramic COGs the height
+          // is tiny even when the width is large, causing heavy integer-rounding drift.
+          const relDiff = Math.abs(r - r0) / r0;
+          const minDim = Math.min(im.getWidth(), im.getHeight());
+          const tol = minDim < 64 ? 0.10 : minDim < 256 ? 0.05 : 0.01;
+          if (relDiff > tol) return false;
         }
         return true;
       };

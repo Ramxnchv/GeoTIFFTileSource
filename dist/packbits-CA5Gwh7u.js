@@ -1,4 +1,4 @@
-import { B as c } from "./main-C87YUIg3.js";
+import { B as c } from "./main-BIrvPNsV.js";
 class l extends c {
   decodeBlock(s) {
     const n = new DataView(s), r = [];
@@ -22,4 +22,4 @@ class l extends c {
 export {
   l as default
 };
-//# sourceMappingURL=packbits-BGkzlxLa.js.map
+//# sourceMappingURL=packbits-CA5Gwh7u.js.map
