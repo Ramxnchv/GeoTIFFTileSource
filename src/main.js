@@ -152,19 +152,31 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
     }
 
     static async getAllTileSources (input, opts) {
+      const inputName = input instanceof File ? input.name : (typeof input === 'string' ? input.split('/').pop() : 'unknown');
+      const t0 = performance.now();
+
       const fileExtension =
         input instanceof File ? input.name.split(".").pop() : input.split(".").pop();
 
       let tiff = await (
         input instanceof File ? fromBlob(input, opts.GeoTIFFOptions) : fromUrl(input, opts.GeoTIFFOptions)
       );
+      const t1 = performance.now();
+      console.log(`⏱️ [${inputName}] fromUrl: ${(t1-t0).toFixed(0)}ms`);
+
       let imageCount = await tiff.getImageCount();
+      const t2 = performance.now();
+      console.log(`⏱️ [${inputName}] getImageCount(${imageCount}): ${(t2-t1).toFixed(0)}ms`);
 
       const images = await Promise.all(
         Array.from({ length: imageCount }, (_, i) => tiff.getImage(i))
       );
+      const t3 = performance.now();
+      console.log(`⏱️ [${inputName}] getImage×${imageCount}: ${(t3-t2).toFixed(0)}ms`);
 
-      let tiffPromise = input instanceof File ? fromBlob(input) : fromUrl(input);
+      // Reuse the already-opened TIFF connection instead of opening a second one.
+      // Previously: fromUrl(input) was called again here, doubling the initial range requests.
+      let tiffPromise = Promise.resolve(tiff);
 
       let filtered = this.userDefinedImagesFilter(images, opts);
       filtered = filtered.filter(
@@ -326,31 +338,41 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
     downloadTileStart(context) {
       const isV6 = !!OpenSeadragon.converter && typeof context.fail === "function";
       const request = "" + context.src;
+      const tileKey = `${context.tile.level}/${context.tile.x}_${context.tile.y}`;
 
       // Abort wiring (OSD < v6 used context.src; v6+ prefers context.userData)
       const abortController = new AbortController();
       if (context.userData) context.userData.abortController = abortController;
 
       const level = this.levels[context.tile.level];
+      const t0 = performance.now();
+
       this.regionToTiffRaster(level, context.tile.x, context.tile.y, abortController.signal)
         .then(async (tiffRaster) => {
+          const t1 = performance.now();
+
           if (isV6) {
-            // ── OSD v6 fast path ────────────────────────────────────────────────
-            // Convert raster → ImageBitmap inside a worker using OffscreenCanvas.
-            // Band ArrayBuffers are transferred zero-copy; the main thread is never
-            // blocked on RGBA pixel processing. OSD's converter graph is bypassed
-            // entirely — the WebGL / canvas drawer receives a ready-to-use bitmap.
             const imageBitmap = await RawTiffAPI.tiffRasterToImageBitmapViaWorker(context.tile, tiffRaster);
+            const t2 = performance.now();
+            if (t2 - t0 > 500) {
+              console.log(`🔲 Tile ${tileKey} | fetch+decode: ${(t1-t0).toFixed(0)}ms | render: ${(t2-t1).toFixed(0)}ms | total: ${(t2-t0).toFixed(0)}ms`);
+            }
             context.finish(imageBitmap, request, "imageBitmap");
             return;
           }
 
           // OSD < v6: canvas2d is the required output type.
           const ctx = await Promise.resolve(RawTiffAPI.rasterToContext2d(context.tile, tiffRaster));
+          const t2 = performance.now();
+          if (t2 - t0 > 500) {
+            console.log(`🔲 Tile ${tileKey} | fetch+decode: ${(t1-t0).toFixed(0)}ms | render: ${(t2-t1).toFixed(0)}ms | total: ${(t2-t0).toFixed(0)}ms`);
+          }
           context.finish(ctx.canvas);
         })
         .catch((err) => {
+          const t1 = performance.now();
           const msg = err && err.message ? err.message : String(err);
+          console.warn(`❌ Tile ${tileKey} FAILED after ${(t1-t0).toFixed(0)}ms: ${msg}`);
           if (isV6) context.fail(msg);
           else context.finish(null, request, msg);
         });
