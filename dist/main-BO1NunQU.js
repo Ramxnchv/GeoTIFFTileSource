@@ -4,7 +4,7 @@ var Re = (r, e, t) => qt(r, typeof e != "symbol" ? e + "" : e, t);
 function j(r) {
   return (e, ...t) => Wt(r, e, t);
 }
-function ue(r, e) {
+function ge(r, e) {
   return j(
     ct(
       r,
@@ -24,9 +24,9 @@ const {
   create: ze,
   defineProperty: Zt
 } = Xt, Jt = Array, Qt = Jt.prototype, ft = Qt[be], er = j(ft), ht = ArrayBuffer, tr = ht.prototype;
-ue(tr, "byteLength");
+ge(tr, "byteLength");
 const nt = typeof SharedArrayBuffer < "u" ? SharedArrayBuffer : null;
-nt && ue(nt.prototype, "byteLength");
+nt && ge(nt.prototype, "byteLength");
 const ut = $e(Uint8Array);
 ut.from;
 const H = ut.prototype;
@@ -51,19 +51,19 @@ j(H.slice);
 j(
   H.subarray
 );
-ue(
+ge(
   H,
   "buffer"
 );
-ue(
+ge(
   H,
   "byteOffset"
 );
-ue(
+ge(
   H,
   "length"
 );
-ue(
+ge(
   H,
   Yt
 );
@@ -115,20 +115,20 @@ for (let r = 1; r < 1024; ++r) {
 }
 for (let r = 1024; r < 2048; ++r)
   qe[r] = 939524096 + (r - 1024 << 13);
-const ge = new Ke(64);
+const de = new Ke(64);
 for (let r = 1; r < 31; ++r)
-  ge[r] = r << 23;
-ge[31] = 1199570944;
-ge[32] = 2147483648;
+  de[r] = r << 23;
+de[31] = 1199570944;
+de[32] = 2147483648;
 for (let r = 33; r < 63; ++r)
-  ge[r] = 2147483648 + (r - 32 << 23);
-ge[63] = 3347054592;
+  de[r] = 2147483648 + (r - 32 << 23);
+de[63] = 3347054592;
 const bt = new gt(64);
 for (let r = 1; r < 64; ++r)
   r !== 32 && (bt[r] = 1024);
 function pr(r) {
   const e = r >> 10;
-  return dr[0] = qe[bt[e] + (r & 1023)] + ge[e], gr[0];
+  return dr[0] = qe[bt[e] + (r & 1023)] + de[e], gr[0];
 }
 function xt(r, e, ...t) {
   return pr(
@@ -146,8 +146,8 @@ function Tt(r, e, t) {
   for (let o = 0; o < a.length; o++) {
     const c = a[o], f = e + "\\=" + c + "([^" + c + "]*)" + c;
     n && console.log("[xml-utils] pattern:", f);
-    const l = new RegExp(f).exec(s);
-    if (n && console.log("[xml-utils] match:", l), l) return l[1];
+    const d = new RegExp(f).exec(s);
+    if (n && console.log("[xml-utils] match:", d), d) return d[1];
   }
 }
 We.exports = Tt;
@@ -188,20 +188,20 @@ function At(r, e, t) {
   const f = c !== -1 && o[c - 1] === "/";
   if (n && console.log("[xml-utils] selfClosing:", f), f === !1)
     if (i) {
-      let d = 0, u = 1, y = 0;
-      for (; (c = ve(o, "[ /]" + e + ">", d)) !== -1; ) {
-        const w = o.substring(d, c + 1);
-        if (u += it(w, "<" + e + `[ 
-	>]`), y += it(w, "</" + e + ">"), y >= u) break;
-        d = c;
+      let h = 0, g = 1, p = 0;
+      for (; (c = ve(o, "[ /]" + e + ">", h)) !== -1; ) {
+        const w = o.substring(h, c + 1);
+        if (g += it(w, "<" + e + `[ 
+	>]`), p += it(w, "</" + e + ">"), p >= g) break;
+        h = c;
       }
     } else
       c = ve(o, "[ /]" + e + ">", 0);
-  const g = a + e.length + c + 1;
-  if (n && console.log("[xml-utils] end:", g), g === -1) return;
-  const l = r.slice(a, g);
-  let h;
-  return f ? h = null : h = l.slice(l.indexOf(">") + 1, l.lastIndexOf("<")), { inner: h, outer: l, start: a, end: g };
+  const u = a + e.length + c + 1;
+  if (n && console.log("[xml-utils] end:", u), u === -1) return;
+  const d = r.slice(a, u);
+  let l;
+  return f ? l = null : l = d.slice(d.indexOf(">") + 1, d.lastIndexOf("<")), { inner: l, outer: d, start: a, end: u };
 }
 Ye.exports = At;
 Ye.exports.default = At;
@@ -217,7 +217,7 @@ function Dt(r, e, t) {
 Ve.exports = Dt;
 Ve.exports.default = Dt;
 var Sr = Ve.exports;
-const Fr = /* @__PURE__ */ It(Sr), oe = {
+const Fr = /* @__PURE__ */ It(Sr), ae = {
   // TIFF Baseline
   315: "Artist",
   258: "BitsPerSample",
@@ -330,8 +330,8 @@ const Fr = /* @__PURE__ */ It(Sr), oe = {
   // LERC
   50674: "LercParameters"
 }, X = {};
-for (const r in oe)
-  oe.hasOwnProperty(r) && (X[oe[r]] = parseInt(r, 10));
+for (const r in ae)
+  ae.hasOwnProperty(r) && (X[ae[r]] = parseInt(r, 10));
 const Fe = {
   256: "SHORT",
   257: "SHORT",
@@ -399,9 +399,9 @@ const Fe = {
   16: "LONG8",
   17: "SLONG8",
   18: "IFD8"
-}, M = {};
+}, O = {};
 for (const r in me)
-  me.hasOwnProperty(r) && (M[me[r]] = parseInt(r, 10));
+  me.hasOwnProperty(r) && (O[me[r]] = parseInt(r, 10));
 const z = {
   WhiteIsZero: 0,
   BlackIsZero: 1,
@@ -423,7 +423,7 @@ const z = {
   None: 0,
   Deflate: 1,
   Zstandard: 2
-}, ce = {
+}, fe = {
   1024: "GTModelTypeGeoKey",
   1025: "GTRasterTypeGeoKey",
   1026: "GTCitationGeoKey",
@@ -472,20 +472,20 @@ const z = {
   4098: "VerticalDatumGeoKey",
   4099: "VerticalUnitsGeoKey"
 }, Rt = {};
-for (const r in ce)
-  ce.hasOwnProperty(r) && (Rt[ce[r]] = parseInt(r, 10));
+for (const r in fe)
+  fe.hasOwnProperty(r) && (Rt[fe[r]] = parseInt(r, 10));
 const Dr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   ExtraSamplesValues: Ct,
   LercAddCompression: Ar,
   LercParameters: Pr,
   arrayFields: kt,
-  fieldTagNames: oe,
+  fieldTagNames: ae,
   fieldTagTypes: Fe,
   fieldTags: X,
   fieldTypeNames: me,
-  fieldTypes: M,
-  geoKeyNames: ce,
+  fieldTypes: O,
+  geoKeyNames: fe,
   geoKeys: Rt,
   photometricInterpretations: z
 }, Symbol.toStringTag, { value: "Module" }));
@@ -532,8 +532,8 @@ function _t(r) {
   const { width: e, height: t } = r, n = new Uint8Array(e * t * 3);
   for (let i = 0, s = 0; i < r.length; i += 3, s += 3) {
     const a = r[i + 0], o = r[i + 1] << 24 >> 24, c = r[i + 2] << 24 >> 24;
-    let f = (a + 16) / 116, g = o / 500 + f, l = f - c / 200, h, d, u;
-    g = kr * (g * g * g > 8856e-6 ? g * g * g : (g - 16 / 116) / 7.787), f = Cr * (f * f * f > 8856e-6 ? f * f * f : (f - 16 / 116) / 7.787), l = Rr * (l * l * l > 8856e-6 ? l * l * l : (l - 16 / 116) / 7.787), h = g * 3.2406 + f * -1.5372 + l * -0.4986, d = g * -0.9689 + f * 1.8758 + l * 0.0415, u = g * 0.0557 + f * -0.204 + l * 1.057, h = h > 31308e-7 ? 1.055 * h ** (1 / 2.4) - 0.055 : 12.92 * h, d = d > 31308e-7 ? 1.055 * d ** (1 / 2.4) - 0.055 : 12.92 * d, u = u > 31308e-7 ? 1.055 * u ** (1 / 2.4) - 0.055 : 12.92 * u, n[s] = Math.max(0, Math.min(1, h)) * 255, n[s + 1] = Math.max(0, Math.min(1, d)) * 255, n[s + 2] = Math.max(0, Math.min(1, u)) * 255;
+    let f = (a + 16) / 116, u = o / 500 + f, d = f - c / 200, l, h, g;
+    u = kr * (u * u * u > 8856e-6 ? u * u * u : (u - 16 / 116) / 7.787), f = Cr * (f * f * f > 8856e-6 ? f * f * f : (f - 16 / 116) / 7.787), d = Rr * (d * d * d > 8856e-6 ? d * d * d : (d - 16 / 116) / 7.787), l = u * 3.2406 + f * -1.5372 + d * -0.4986, h = u * -0.9689 + f * 1.8758 + d * 0.0415, g = u * 0.0557 + f * -0.204 + d * 1.057, l = l > 31308e-7 ? 1.055 * l ** (1 / 2.4) - 0.055 : 12.92 * l, h = h > 31308e-7 ? 1.055 * h ** (1 / 2.4) - 0.055 : 12.92 * h, g = g > 31308e-7 ? 1.055 * g ** (1 / 2.4) - 0.055 : 12.92 * g, n[s] = Math.max(0, Math.min(1, l)) * 255, n[s + 1] = Math.max(0, Math.min(1, h)) * 255, n[s + 2] = Math.max(0, Math.min(1, g)) * 255;
   }
   return n;
 }
@@ -556,19 +556,19 @@ async function Qe(r) {
   const t = await e();
   return new t(r);
 }
-re([void 0, 1], () => import("./raw-CWElYiTF.js").then((r) => r.default));
-re(5, () => import("./lzw-DLWpHVi0.js").then((r) => r.default));
+re([void 0, 1], () => import("./raw-BG06isCg.js").then((r) => r.default));
+re(5, () => import("./lzw-CI7OwFRW.js").then((r) => r.default));
 re(6, () => {
   throw new Error("old style JPEG compression is not supported.");
 });
-re(7, () => import("./jpeg-imVVVQ_l.js").then((r) => r.default));
-re([8, 32946], () => import("./deflate--7wVxDdk.js").then((r) => r.default));
-re(32773, () => import("./packbits-CA5Gwh7u.js").then((r) => r.default));
+re(7, () => import("./jpeg-Bqm5hFZ3.js").then((r) => r.default));
+re([8, 32946], () => import("./deflate-DzJutk3i.js").then((r) => r.default));
+re(32773, () => import("./packbits-3wkdP8an.js").then((r) => r.default));
 re(
   34887,
-  () => import("./lerc-Cpib_QQp.js").then(async (r) => (await r.zstd.init(), r)).then((r) => r.default)
+  () => import("./lerc-BqNtjnb8.js").then(async (r) => (await r.zstd.init(), r)).then((r) => r.default)
 );
-re(50001, () => import("./webimage-BcWLEno3.js").then((r) => r.default));
+re(50001, () => import("./webimage-CQdjQ1lQ.js").then((r) => r.default));
 function Pe(r, e, t, n = 1) {
   return new (Object.getPrototypeOf(r)).constructor(e * t * n);
 }
@@ -577,16 +577,16 @@ function vr(r, e, t, n, i) {
   return r.map((o) => {
     const c = Pe(o, n, i);
     for (let f = 0; f < i; ++f) {
-      const g = Math.min(Math.round(a * f), t - 1);
-      for (let l = 0; l < n; ++l) {
-        const h = Math.min(Math.round(s * l), e - 1), d = o[g * e + h];
-        c[f * n + l] = d;
+      const u = Math.min(Math.round(a * f), t - 1);
+      for (let d = 0; d < n; ++d) {
+        const l = Math.min(Math.round(s * d), e - 1), h = o[u * e + l];
+        c[f * n + d] = h;
       }
     }
     return c;
   });
 }
-function fe(r, e, t) {
+function he(r, e, t) {
   return (1 - t) * r + t * e;
 }
 function Gr(r, e, t, n, i) {
@@ -594,14 +594,14 @@ function Gr(r, e, t, n, i) {
   return r.map((o) => {
     const c = Pe(o, n, i);
     for (let f = 0; f < i; ++f) {
-      const g = a * f, l = Math.floor(g), h = Math.min(Math.ceil(g), t - 1);
-      for (let d = 0; d < n; ++d) {
-        const u = s * d, y = u % 1, w = Math.floor(u), x = Math.min(Math.ceil(u), e - 1), b = o[l * e + w], T = o[l * e + x], F = o[h * e + w], k = o[h * e + x], m = fe(
-          fe(b, T, y),
-          fe(F, k, y),
-          g % 1
+      const u = a * f, d = Math.floor(u), l = Math.min(Math.ceil(u), t - 1);
+      for (let h = 0; h < n; ++h) {
+        const g = s * h, p = g % 1, w = Math.floor(g), T = Math.min(Math.ceil(g), e - 1), b = o[d * e + w], F = o[d * e + T], S = o[l * e + w], A = o[l * e + T], y = he(
+          he(b, F, p),
+          he(S, A, p),
+          u % 1
         );
-        c[f * n + d] = m;
+        c[f * n + h] = y;
       }
     }
     return c;
@@ -621,12 +621,12 @@ function Or(r, e, t, n, i, s = "nearest") {
 function Er(r, e, t, n, i, s) {
   const a = e / n, o = t / i, c = Pe(r, n, i, s);
   for (let f = 0; f < i; ++f) {
-    const g = Math.min(Math.round(o * f), t - 1);
-    for (let l = 0; l < n; ++l) {
-      const h = Math.min(Math.round(a * l), e - 1);
-      for (let d = 0; d < s; ++d) {
-        const u = r[g * e * s + h * s + d];
-        c[f * n * s + l * s + d] = u;
+    const u = Math.min(Math.round(o * f), t - 1);
+    for (let d = 0; d < n; ++d) {
+      const l = Math.min(Math.round(a * d), e - 1);
+      for (let h = 0; h < s; ++h) {
+        const g = r[u * e * s + l * s + h];
+        c[f * n * s + d * s + h] = g;
       }
     }
   }
@@ -635,16 +635,16 @@ function Er(r, e, t, n, i, s) {
 function _r(r, e, t, n, i, s) {
   const a = e / n, o = t / i, c = Pe(r, n, i, s);
   for (let f = 0; f < i; ++f) {
-    const g = o * f, l = Math.floor(g), h = Math.min(Math.ceil(g), t - 1);
-    for (let d = 0; d < n; ++d) {
-      const u = a * d, y = u % 1, w = Math.floor(u), x = Math.min(Math.ceil(u), e - 1);
+    const u = o * f, d = Math.floor(u), l = Math.min(Math.ceil(u), t - 1);
+    for (let h = 0; h < n; ++h) {
+      const g = a * h, p = g % 1, w = Math.floor(g), T = Math.min(Math.ceil(g), e - 1);
       for (let b = 0; b < s; ++b) {
-        const T = r[l * e * s + w * s + b], F = r[l * e * s + x * s + b], k = r[h * e * s + w * s + b], m = r[h * e * s + x * s + b], p = fe(
-          fe(T, F, y),
-          fe(k, m, y),
-          g % 1
+        const F = r[d * e * s + w * s + b], S = r[d * e * s + T * s + b], A = r[l * e * s + w * s + b], y = r[l * e * s + T * s + b], m = he(
+          he(F, S, p),
+          he(A, y, p),
+          u % 1
         );
-        c[f * n * s + d * s + b] = p;
+        c[f * n * s + h * s + b] = m;
       }
     }
   }
@@ -715,32 +715,32 @@ function Lr(r, e) {
   return (r === 1 || r === 2) && e <= 32 && e % 8 === 0 ? !1 : !(r === 3 && (e === 16 || e === 32 || e === 64));
 }
 function Nr(r, e, t, n, i, s, a) {
-  const o = new DataView(r), c = t === 2 ? a * s : a * s * n, f = t === 2 ? 1 : n, g = Oe(e, i, c), l = parseInt("1".repeat(i), 2);
+  const o = new DataView(r), c = t === 2 ? a * s : a * s * n, f = t === 2 ? 1 : n, u = Oe(e, i, c), d = parseInt("1".repeat(i), 2);
   if (e === 1) {
-    let h;
-    t === 1 ? h = n * i : h = i;
-    let d = s * h;
-    d & 7 && (d = d + 7 & -8);
-    for (let u = 0; u < a; ++u) {
-      const y = u * d;
+    let l;
+    t === 1 ? l = n * i : l = i;
+    let h = s * l;
+    h & 7 && (h = h + 7 & -8);
+    for (let g = 0; g < a; ++g) {
+      const p = g * h;
       for (let w = 0; w < s; ++w) {
-        const x = y + w * f * i;
+        const T = p + w * f * i;
         for (let b = 0; b < f; ++b) {
-          const T = x + b * i, F = (u * s + w) * f + b, k = Math.floor(T / 8), m = T % 8;
-          if (m + i <= 8)
-            g[F] = o.getUint8(k) >> 8 - i - m & l;
-          else if (m + i <= 16)
-            g[F] = o.getUint16(k) >> 16 - i - m & l;
-          else if (m + i <= 24) {
-            const p = o.getUint16(k) << 8 | o.getUint8(k + 2);
-            g[F] = p >> 24 - i - m & l;
+          const F = T + b * i, S = (g * s + w) * f + b, A = Math.floor(F / 8), y = F % 8;
+          if (y + i <= 8)
+            u[S] = o.getUint8(A) >> 8 - i - y & d;
+          else if (y + i <= 16)
+            u[S] = o.getUint16(A) >> 16 - i - y & d;
+          else if (y + i <= 24) {
+            const m = o.getUint16(A) << 8 | o.getUint8(A + 2);
+            u[S] = m >> 24 - i - y & d;
           } else
-            g[F] = o.getUint32(k) >> 32 - i - m & l;
+            u[S] = o.getUint32(A) >> 32 - i - y & d;
         }
       }
     }
   }
-  return g.buffer;
+  return u.buffer;
 }
 class et {
   /**
@@ -889,23 +889,23 @@ class et {
     let c;
     const { tiles: f } = this;
     this.planarConfiguration === 1 ? c = t * a + e : this.planarConfiguration === 2 && (c = n * a * o + t * a + e);
-    let g, l;
-    this.isTiled ? (g = this.fileDirectory.TileOffsets[c], l = this.fileDirectory.TileByteCounts[c]) : (g = this.fileDirectory.StripOffsets[c], l = this.fileDirectory.StripByteCounts[c]);
-    const h = (await this.source.fetch([{ offset: g, length: l }], s))[0];
-    let d;
-    return f === null || !f[c] ? (d = (async () => {
-      let u = await i.decode(this.fileDirectory, h);
-      const y = this.getSampleFormat(), w = this.getBitsPerSample();
-      return Lr(y, w) && (u = Nr(
-        u,
-        y,
+    let u, d;
+    this.isTiled ? (u = this.fileDirectory.TileOffsets[c], d = this.fileDirectory.TileByteCounts[c]) : (u = this.fileDirectory.StripOffsets[c], d = this.fileDirectory.StripByteCounts[c]);
+    const l = (await this.source.fetch([{ offset: u, length: d }], s))[0];
+    let h;
+    return f === null || !f[c] ? (h = (async () => {
+      let g = await i.decode(this.fileDirectory, l);
+      const p = this.getSampleFormat(), w = this.getBitsPerSample();
+      return Lr(p, w) && (g = Nr(
+        g,
+        p,
         this.planarConfiguration,
         this.getSamplesPerPixel(),
         w,
         this.getTileWidth(),
         this.getBlockHeight(t)
-      )), u;
-    })(), f !== null && (f[c] = d)) : d = f[c], { x: e, y: t, sample: n, data: await d };
+      )), g;
+    })(), f !== null && (f[c] = h)) : h = f[c], { x: e, y: t, sample: n, data: await h };
   }
   /**
    * Internal read function.
@@ -923,44 +923,44 @@ class et {
    * @returns {Promise<ReadRasterResult>}
    */
   async _readRaster(e, t, n, i, s, a, o, c, f) {
-    const g = this.getTileWidth(), l = this.getTileHeight(), h = this.getWidth(), d = this.getHeight(), u = Math.max(Math.floor(e[0] / g), 0), y = Math.min(
-      Math.ceil(e[2] / g),
-      Math.ceil(h / g)
-    ), w = Math.max(Math.floor(e[1] / l), 0), x = Math.min(
-      Math.ceil(e[3] / l),
-      Math.ceil(d / l)
+    const u = this.getTileWidth(), d = this.getTileHeight(), l = this.getWidth(), h = this.getHeight(), g = Math.max(Math.floor(e[0] / u), 0), p = Math.min(
+      Math.ceil(e[2] / u),
+      Math.ceil(l / u)
+    ), w = Math.max(Math.floor(e[1] / d), 0), T = Math.min(
+      Math.ceil(e[3] / d),
+      Math.ceil(h / d)
     ), b = e[2] - e[0];
-    let T = this.getBytesPerPixel();
-    const F = [], k = [];
-    for (let I = 0; I < t.length; ++I)
-      this.planarConfiguration === 1 ? F.push(Ur(this.fileDirectory.BitsPerSample, 0, t[I]) / 8) : F.push(0), k.push(this.getReaderForSample(t[I]));
-    const m = [], { littleEndian: p } = this;
-    for (let I = w; I < x; ++I)
-      for (let E = u; E < y; ++E) {
-        let C;
-        this.planarConfiguration === 1 && (C = this.getTileOrStrip(E, I, 0, s, f));
-        for (let v = 0; v < t.length; ++v) {
-          const B = v, A = t[v];
-          this.planarConfiguration === 2 && (T = this.getSampleByteSize(A), C = this.getTileOrStrip(E, I, A, s, f));
-          const G = C.then((S) => {
-            const D = S.data, O = new DataView(D), R = this.getBlockHeight(S.y), L = S.y * l, P = S.x * g, U = L + R, _ = (S.x + 1) * g, N = k[B], W = Math.min(R, R - (U - e[3]), d - L), V = Math.min(g, g - (_ - e[2]), h - P);
-            for (let Y = Math.max(0, e[1] - L); Y < W; ++Y)
-              for (let de = Math.max(0, e[0] - P); de < V; ++de) {
-                const Kt = (Y * g + de) * T, rt = N.call(
-                  O,
-                  Kt + F[B],
-                  p
+    let F = this.getBytesPerPixel();
+    const S = [], A = [];
+    for (let x = 0; x < t.length; ++x)
+      this.planarConfiguration === 1 ? S.push(Ur(this.fileDirectory.BitsPerSample, 0, t[x]) / 8) : S.push(0), A.push(this.getReaderForSample(t[x]));
+    const y = [], { littleEndian: m } = this;
+    for (let x = w; x < T; ++x)
+      for (let k = g; k < p; ++k) {
+        let U;
+        this.planarConfiguration === 1 && (U = this.getTileOrStrip(k, x, 0, s, f));
+        for (let C = 0; C < t.length; ++C) {
+          const E = C, P = t[C];
+          this.planarConfiguration === 2 && (F = this.getSampleByteSize(P), U = this.getTileOrStrip(k, x, P, s, f));
+          const N = U.then((D) => {
+            const I = D.data, v = new DataView(I), R = this.getBlockHeight(D.y), L = D.y * d, G = D.x * u, B = L + R, M = (D.x + 1) * u, _ = A[E], W = Math.min(R, R - (B - e[3]), h - L), Y = Math.min(u, u - (M - e[2]), l - G);
+            for (let V = Math.max(0, e[1] - L); V < W; ++V)
+              for (let ie = Math.max(0, e[0] - G); ie < Y; ++ie) {
+                const Kt = (V * u + ie) * F, rt = _.call(
+                  v,
+                  Kt + S[E],
+                  m
                 );
                 let Ie;
-                i ? (Ie = (Y + L - e[1]) * b * t.length + (de + P - e[0]) * t.length + B, n[Ie] = rt) : (Ie = (Y + L - e[1]) * b + de + P - e[0], n[B][Ie] = rt);
+                i ? (Ie = (V + L - e[1]) * b * t.length + (ie + G - e[0]) * t.length + E, n[Ie] = rt) : (Ie = (V + L - e[1]) * b + ie + G - e[0], n[E][Ie] = rt);
               }
           });
-          m.push(G);
+          y.push(N);
         }
       }
-    if (await Promise.all(m), a && e[2] - e[0] !== a || o && e[3] - e[1] !== o) {
-      let I;
-      return i ? I = Mr(
+    if (await Promise.all(y), a && e[2] - e[0] !== a || o && e[3] - e[1] !== o) {
+      let x;
+      return i ? x = Mr(
         n,
         e[2] - e[0],
         e[3] - e[1],
@@ -968,14 +968,14 @@ class et {
         o,
         t.length,
         c
-      ) : I = Or(
+      ) : x = Or(
         n,
         e[2] - e[0],
         e[3] - e[1],
         a,
         o,
         c
-      ), I.width = a, I.height = o, I;
+      ), x.width = a, x.height = o, x;
     }
     return n.width = a || e[2] - e[0], n.height = o || e[3] - e[1], n;
   }
@@ -999,33 +999,33 @@ class et {
     fillValue: c,
     signal: f
   } = {}) {
-    const g = e || [0, 0, this.getWidth(), this.getHeight()];
-    if (g[0] > g[2] || g[1] > g[3])
+    const u = e || [0, 0, this.getWidth(), this.getHeight()];
+    if (u[0] > u[2] || u[1] > u[3])
       throw new Error("Invalid subsets");
-    const l = g[2] - g[0], h = g[3] - g[1], d = l * h, u = this.getSamplesPerPixel();
+    const d = u[2] - u[0], l = u[3] - u[1], h = d * l, g = this.getSamplesPerPixel();
     if (!t || !t.length)
-      for (let b = 0; b < u; ++b)
+      for (let b = 0; b < g; ++b)
         t.push(b);
     else
       for (let b = 0; b < t.length; ++b)
-        if (t[b] >= u)
+        if (t[b] >= g)
           return Promise.reject(new RangeError(`Invalid sample index '${t[b]}'.`));
-    let y;
+    let p;
     if (n) {
-      const b = this.fileDirectory.SampleFormat ? Math.max.apply(null, this.fileDirectory.SampleFormat) : 1, T = Math.max.apply(null, this.fileDirectory.BitsPerSample);
-      y = Oe(b, T, d * t.length), c && y.fill(c);
+      const b = this.fileDirectory.SampleFormat ? Math.max.apply(null, this.fileDirectory.SampleFormat) : 1, F = Math.max.apply(null, this.fileDirectory.BitsPerSample);
+      p = Oe(b, F, h * t.length), c && p.fill(c);
     } else {
-      y = [];
+      p = [];
       for (let b = 0; b < t.length; ++b) {
-        const T = this.getArrayForSample(t[b], d);
-        Array.isArray(c) && b < c.length ? T.fill(c[b]) : c && !Array.isArray(c) && T.fill(c), y.push(T);
+        const F = this.getArrayForSample(t[b], h);
+        Array.isArray(c) && b < c.length ? F.fill(c[b]) : c && !Array.isArray(c) && F.fill(c), p.push(F);
       }
     }
     const w = i || await Qe(this.fileDirectory);
     return await this._readRaster(
-      g,
+      u,
       t,
-      y,
+      p,
       n,
       w,
       s,
@@ -1071,18 +1071,18 @@ class et {
     const f = e || [0, 0, this.getWidth(), this.getHeight()];
     if (f[0] > f[2] || f[1] > f[3])
       throw new Error("Invalid subsets");
-    const g = this.fileDirectory.PhotometricInterpretation;
-    if (g === z.RGB) {
-      let x = [0, 1, 2];
+    const u = this.fileDirectory.PhotometricInterpretation;
+    if (u === z.RGB) {
+      let T = [0, 1, 2];
       if (this.fileDirectory.ExtraSamples !== Ct.Unspecified && o) {
-        x = [];
+        T = [];
         for (let b = 0; b < this.fileDirectory.BitsPerSample.length; b += 1)
-          x.push(b);
+          T.push(b);
       }
       return this.readRasters({
         window: e,
         interleave: t,
-        samples: x,
+        samples: T,
         pool: n,
         width: i,
         height: s,
@@ -1090,63 +1090,63 @@ class et {
         signal: c
       });
     }
-    let l;
-    switch (g) {
+    let d;
+    switch (u) {
       case z.WhiteIsZero:
       case z.BlackIsZero:
       case z.Palette:
-        l = [0];
+        d = [0];
         break;
       case z.CMYK:
-        l = [0, 1, 2, 3];
+        d = [0, 1, 2, 3];
         break;
       case z.YCbCr:
       case z.CIELab:
-        l = [0, 1, 2];
+        d = [0, 1, 2];
         break;
       default:
         throw new Error("Invalid or unsupported photometric interpretation.");
     }
-    const h = {
+    const l = {
       window: f,
       interleave: !0,
-      samples: l,
+      samples: d,
       pool: n,
       width: i,
       height: s,
       resampleMethod: a,
       signal: c
-    }, { fileDirectory: d } = this, u = await this.readRasters(h), y = 2 ** this.fileDirectory.BitsPerSample[0];
+    }, { fileDirectory: h } = this, g = await this.readRasters(l), p = 2 ** this.fileDirectory.BitsPerSample[0];
     let w;
-    switch (g) {
+    switch (u) {
       case z.WhiteIsZero:
-        w = Bt(u, y);
+        w = Bt(g, p);
         break;
       case z.BlackIsZero:
-        w = vt(u, y);
+        w = vt(g, p);
         break;
       case z.Palette:
-        w = Gt(u, d.ColorMap);
+        w = Gt(g, h.ColorMap);
         break;
       case z.CMYK:
-        w = Ot(u);
+        w = Ot(g);
         break;
       case z.YCbCr:
-        w = Et(u);
+        w = Et(g);
         break;
       case z.CIELab:
-        w = _t(u);
+        w = _t(g);
         break;
       default:
         throw new Error("Unsupported photometric interpretation.");
     }
     if (!t) {
-      const x = new Uint8Array(w.length / 3), b = new Uint8Array(w.length / 3), T = new Uint8Array(w.length / 3);
-      for (let F = 0, k = 0; F < w.length; F += 3, ++k)
-        x[k] = w[F], b[k] = w[F + 1], T[k] = w[F + 2];
-      w = [x, b, T];
+      const T = new Uint8Array(w.length / 3), b = new Uint8Array(w.length / 3), F = new Uint8Array(w.length / 3);
+      for (let S = 0, A = 0; S < w.length; S += 3, ++A)
+        T[A] = w[S], b[A] = w[S + 1], F[A] = w[S + 2];
+      w = [T, b, F];
     }
-    return w.width = u.width, w.height = u.height, w;
+    return w.width = g.width, w.height = g.height, w;
   }
   /**
    * Returns an array of tiepoints.
@@ -1274,20 +1274,20 @@ class et {
   getBoundingBox(e = !1) {
     const t = this.getHeight(), n = this.getWidth();
     if (this.fileDirectory.ModelTransformation && !e) {
-      const [i, s, a, o, c, f, g, l] = this.fileDirectory.ModelTransformation, d = [
+      const [i, s, a, o, c, f, u, d] = this.fileDirectory.ModelTransformation, h = [
         [0, 0],
         [0, t],
         [n, 0],
         [n, t]
-      ].map(([w, x]) => [
-        o + i * w + s * x,
-        l + c * w + f * x
-      ]), u = d.map((w) => w[0]), y = d.map((w) => w[1]);
+      ].map(([w, T]) => [
+        o + i * w + s * T,
+        d + c * w + f * T
+      ]), g = h.map((w) => w[0]), p = h.map((w) => w[1]);
       return [
-        Math.min(...u),
-        Math.min(...y),
-        Math.max(...u),
-        Math.max(...y)
+        Math.min(...g),
+        Math.min(...p),
+        Math.max(...g),
+        Math.max(...p)
       ];
     } else {
       const i = this.getOrigin(), s = this.getResolution(), a = i[0], o = i[1], c = a + s[0] * n, f = o + s[1] * t;
@@ -1579,14 +1579,14 @@ function qr(r, e) {
     const c = o.substr(s.length + 2);
     if (c.length === 0)
       break;
-    const f = c.indexOf(st), g = Kr(c.substr(0, f)), { start: l, end: h, total: d } = Ee(g["content-range"]), u = t + s.length + f + st.length, y = parseInt(h, 10) + 1 - parseInt(l, 10);
+    const f = c.indexOf(st), u = Kr(c.substr(0, f)), { start: d, end: l, total: h } = Ee(u["content-range"]), g = t + s.length + f + st.length, p = parseInt(l, 10) + 1 - parseInt(d, 10);
     i.push({
-      headers: g,
-      data: r.slice(u, u + y),
-      offset: l,
-      length: y,
-      fileSize: d
-    }), t = u + y + 4;
+      headers: u,
+      data: r.slice(g, g + p),
+      offset: d,
+      length: p,
+      fileSize: h
+    }), t = g + p + 4;
   }
   return i;
 }
@@ -1789,9 +1789,9 @@ function Xr(r, e) {
   const t = Array.isArray(r) ? r : Array.from(r), n = Array.isArray(e) ? e : Array.from(e);
   return t.map((i, s) => [i, n[s]]);
 }
-class ae extends Error {
+class le extends Error {
   constructor(e) {
-    super(e), Error.captureStackTrace && Error.captureStackTrace(this, ae), this.name = "AbortError";
+    super(e), Error.captureStackTrace && Error.captureStackTrace(this, le), this.name = "AbortError";
   }
 }
 class Zr extends Error {
@@ -1854,39 +1854,39 @@ class en extends xe {
   async fetch(e, t) {
     const n = [], i = [], s = [];
     this.evictedBlocks.clear();
-    for (const { offset: h, length: d } of e) {
-      let u = h + d;
-      const { fileSize: y } = this;
-      y !== null && (u = Math.min(u, y));
-      const w = Math.floor(h / this.blockSize) * this.blockSize;
-      for (let x = w; x < u; x += this.blockSize) {
-        const b = Math.floor(x / this.blockSize);
+    for (const { offset: l, length: h } of e) {
+      let g = l + h;
+      const { fileSize: p } = this;
+      p !== null && (g = Math.min(g, p));
+      const w = Math.floor(l / this.blockSize) * this.blockSize;
+      for (let T = w; T < g; T += this.blockSize) {
+        const b = Math.floor(T / this.blockSize);
         !this.blockCache.has(b) && !this.blockRequests.has(b) && (this.blockIdsToFetch.add(b), i.push(b)), this.blockRequests.has(b) && n.push(this.blockRequests.get(b)), s.push(b);
       }
     }
     await Yr(), this.fetchBlocks(t);
     const a = [];
-    for (const h of i)
-      this.blockRequests.has(h) && a.push(this.blockRequests.get(h));
+    for (const l of i)
+      this.blockRequests.has(l) && a.push(this.blockRequests.get(l));
     await Promise.allSettled(n), await Promise.allSettled(a);
-    const o = [], c = s.filter((h) => this.abortedBlockIds.has(h) || !this.blockCache.has(h));
-    if (c.forEach((h) => this.blockIdsToFetch.add(h)), c.length > 0 && t && !t.aborted) {
+    const o = [], c = s.filter((l) => this.abortedBlockIds.has(l) || !this.blockCache.has(l));
+    if (c.forEach((l) => this.blockIdsToFetch.add(l)), c.length > 0 && t && !t.aborted) {
       this.fetchBlocks(null);
-      for (const h of c) {
-        const d = this.blockRequests.get(h);
-        if (!d)
-          throw new Error(`Block ${h} is not in the block requests`);
-        o.push(d);
+      for (const l of c) {
+        const h = this.blockRequests.get(l);
+        if (!h)
+          throw new Error(`Block ${l} is not in the block requests`);
+        o.push(h);
       }
       await Promise.allSettled(o);
     }
     if (t && t.aborted)
-      throw new ae("Request was aborted");
-    const f = s.map((h) => this.blockCache.get(h) || this.evictedBlocks.get(h)), g = f.filter((h) => !h);
-    if (g.length)
-      throw new Jr(g, "Request failed");
-    const l = new Map(Xr(s, f));
-    return this.readSliceData(e, l);
+      throw new le("Request was aborted");
+    const f = s.map((l) => this.blockCache.get(l) || this.evictedBlocks.get(l)), u = f.filter((l) => !l);
+    if (u.length)
+      throw new Jr(u, "Request failed");
+    const d = new Map(Xr(s, f));
+    return this.readSliceData(e, d);
   }
   /**
    *
@@ -1900,13 +1900,13 @@ class en extends xe {
         for (const a of s.blockIds)
           this.blockRequests.set(a, (async () => {
             try {
-              const o = (await n)[i], c = a * this.blockSize, f = c - o.offset, g = Math.min(f + this.blockSize, o.data.byteLength), l = o.data.slice(f, g), h = new Qr(
+              const o = (await n)[i], c = a * this.blockSize, f = c - o.offset, u = Math.min(f + this.blockSize, o.data.byteLength), d = o.data.slice(f, u), l = new Qr(
                 c,
-                l.byteLength,
-                l,
+                d.byteLength,
+                d,
                 a
               );
-              this.blockCache.set(a, h), this.abortedBlockIds.delete(a);
+              this.blockCache.set(a, l), this.abortedBlockIds.delete(a);
             } catch (o) {
               if (o.name === "AbortError")
                 o.signal = e, this.blockCache.delete(a), this.abortedBlockIds.add(a);
@@ -1954,11 +1954,11 @@ class en extends xe {
       this.fileSize !== null && (i = Math.min(this.fileSize, i));
       const s = Math.floor(n.offset / this.blockSize), a = Math.floor(i / this.blockSize), o = new ArrayBuffer(n.length), c = new Uint8Array(o);
       for (let f = s; f <= a; ++f) {
-        const g = t.get(f), l = g.offset - n.offset, h = g.top - i;
-        let d = 0, u = 0, y;
-        l < 0 ? d = -l : l > 0 && (u = l), h < 0 ? y = g.length - d : y = i - g.offset - d;
-        const w = new Uint8Array(g.data, d, y);
-        c.set(w, u);
+        const u = t.get(f), d = u.offset - n.offset, l = u.top - i;
+        let h = 0, g = 0, p;
+        d < 0 ? h = -d : d > 0 && (g = d), l < 0 ? p = u.length - h : p = i - u.offset - h;
+        const w = new Uint8Array(u.data, h, p);
+        c.set(w, g);
       }
       return o;
     });
@@ -2069,14 +2069,14 @@ class sn extends De {
       s.onload = () => {
         const a = s.response;
         n(new nn(s, a));
-      }, s.onerror = i, s.onabort = () => i(new ae("Request aborted")), s.send(), t && (t.aborted && s.abort(), t.addEventListener("abort", () => s.abort()));
+      }, s.onerror = i, s.onabort = () => i(new le("Request aborted")), s.send(), t && (t.aborted && s.abort(), t.addEventListener("abort", () => s.abort()));
     });
   }
   async request({ headers: e, signal: t } = {}) {
     return await this.constructRequest(e, t);
   }
 }
-const he = {};
+const ue = {};
 class on extends Ae {
   /**
    * BaseResponse facade for node HTTP/HTTPS API Response
@@ -2097,7 +2097,7 @@ class on extends Ae {
 }
 class an extends De {
   constructor(e) {
-    super(e), this.parsedUrl = he.parse(this.url), this.httpApi = (this.parsedUrl.protocol === "http:", he);
+    super(e), this.parsedUrl = ue.parse(this.url), this.httpApi = (this.parsedUrl.protocol === "http:", ue);
   }
   constructRequest(e, t) {
     return new Promise((n, i) => {
@@ -2109,17 +2109,17 @@ class an extends De {
         (a) => {
           const o = new Promise((c) => {
             const f = [];
-            a.on("data", (g) => {
-              f.push(g);
+            a.on("data", (u) => {
+              f.push(u);
             }), a.on("end", () => {
-              const g = Buffer.concat(f).buffer;
-              c(g);
+              const u = Buffer.concat(f).buffer;
+              c(u);
             }), a.on("error", i);
           });
           n(new on(a, o));
         }
       );
-      s.on("error", i), t && (t.aborted && s.destroy(new ae("Request aborted")), t.addEventListener("abort", () => s.destroy(new ae("Request aborted"))));
+      s.on("error", i), t && (t.aborted && s.destroy(new le("Request aborted")), t.addEventListener("abort", () => s.destroy(new le("Request aborted"))));
     });
   }
   async request({ headers: e, signal: t } = {}) {
@@ -2158,21 +2158,21 @@ class ke extends xe {
       if (n.status === 206) {
         const { type: i, params: s } = Hr(n.getHeader("content-type"));
         if (i === "multipart/byteranges") {
-          const l = qr(await n.getData(), s.boundary);
-          return this._fileSize = l[0].fileSize || null, l;
+          const d = qr(await n.getData(), s.boundary);
+          return this._fileSize = d[0].fileSize || null, d;
         }
         const a = await n.getData(), { start: o, end: c, total: f } = Ee(n.getHeader("content-range"));
         this._fileSize = f || null;
-        const g = [{
+        const u = [{
           data: a,
           offset: o,
           length: c - o
         }];
         if (e.length > 1) {
-          const l = await Promise.all(e.slice(1).map((h) => this.fetchSlice(h, t)));
-          return g.concat(l);
+          const d = await Promise.all(e.slice(1).map((l) => this.fetchSlice(l, t)));
+          return u.concat(d);
         }
-        return g;
+        return u;
       } else {
         if (!this.allowFullFile)
           throw new Error("Server responded with full file");
@@ -2245,7 +2245,7 @@ class un extends xe {
   }
   fetchSlice(e, t) {
     if (t && t.aborted)
-      throw new ae("Request aborted");
+      throw new le("Request aborted");
     return this.arrayBuffer.slice(e.offset, e.offset + e.length);
   }
 }
@@ -2268,21 +2268,21 @@ function pn(r) {
 }
 function mn(r) {
   return new Promise((e, t) => {
-    he.close(r, (n) => {
+    ue.close(r, (n) => {
       n ? t(n) : e();
     });
   });
 }
 function yn(r, e, t = void 0) {
   return new Promise((n, i) => {
-    he.open(r, e, t, (s, a) => {
+    ue.open(r, e, t, (s, a) => {
       s ? i(s) : n(a);
     });
   });
 }
 function wn(...r) {
   return new Promise((e, t) => {
-    he.read(...r, (n, i, s) => {
+    ue.read(...r, (n, i, s) => {
       n ? t(n) : e({ bytesRead: i, buffer: s });
     });
   });
@@ -2309,7 +2309,7 @@ class bn extends xe {
 function xn(r) {
   return new bn(r);
 }
-const In = tt(oe), Tn = tt(ce), ee = {};
+const In = tt(ae), Tn = tt(fe), ee = {};
 Nt(ee, In);
 Nt(ee, Tn);
 const Sn = tt(me), Se = 1e3, K = {
@@ -2372,25 +2372,25 @@ const Fn = (r, e, t, n) => {
   for (const o of s) {
     let c = null;
     typeof o == "number" ? c = o : typeof o == "string" && (c = parseInt(o, 10));
-    const f = Fe[c], g = Sn[f];
+    const f = Fe[c], u = Sn[f];
     if (f == null || f === void 0 || typeof f > "u")
       throw new Error(`unknown type of tag: ${c}`);
-    let l = n[o];
-    if (l === void 0)
+    let d = n[o];
+    if (d === void 0)
       throw new Error(`failed to get value for key ${o}`);
-    f === "ASCII" && typeof l == "string" && jt(l, "\0") === !1 && (l += "\0");
-    const h = l.length;
-    r.writeUshort(e, i, c), i += 2, r.writeUshort(e, i, g), i += 2, r.writeUint(e, i, h), i += 4;
-    let d = [-1, 1, 1, 2, 4, 8, 0, 0, 0, 0, 0, 0, 8][g] * h, u = i;
-    d > 4 && (r.writeUint(e, i, a), u = a), f === "ASCII" ? r.writeASCII(e, u, l) : f === "SHORT" ? q(h, (y) => {
-      r.writeUshort(e, u + 2 * y, l[y]);
-    }) : f === "LONG" ? q(h, (y) => {
-      r.writeUint(e, u + 4 * y, l[y]);
-    }) : f === "RATIONAL" ? q(h, (y) => {
-      r.writeUint(e, u + 8 * y, Math.round(l[y] * 1e4)), r.writeUint(e, u + 8 * y + 4, 1e4);
-    }) : f === "DOUBLE" && q(h, (y) => {
-      r.writeDouble(e, u + 8 * y, l[y]);
-    }), d > 4 && (d += d & 1, a += d), i += 4;
+    f === "ASCII" && typeof d == "string" && jt(d, "\0") === !1 && (d += "\0");
+    const l = d.length;
+    r.writeUshort(e, i, c), i += 2, r.writeUshort(e, i, u), i += 2, r.writeUint(e, i, l), i += 4;
+    let h = [-1, 1, 1, 2, 4, 8, 0, 0, 0, 0, 0, 0, 8][u] * l, g = i;
+    h > 4 && (r.writeUint(e, i, a), g = a), f === "ASCII" ? r.writeASCII(e, g, d) : f === "SHORT" ? q(l, (p) => {
+      r.writeUshort(e, g + 2 * p, d[p]);
+    }) : f === "LONG" ? q(l, (p) => {
+      r.writeUint(e, g + 4 * p, d[p]);
+    }) : f === "RATIONAL" ? q(l, (p) => {
+      r.writeUint(e, g + 8 * p, Math.round(d[p] * 1e4)), r.writeUint(e, g + 8 * p + 4, 1e4);
+    }) : f === "DOUBLE" && q(l, (p) => {
+      r.writeDouble(e, g + 8 * p, d[p]);
+    }), h > 4 && (h += h & 1, a += h), i += 4;
   }
   return [i, a];
 }, Pn = (r) => {
@@ -2431,8 +2431,8 @@ const Fn = (r, e, t, n) => {
   const s = new Uint8Array(Pn([i])), a = new Uint8Array(r), o = i[277], c = new Uint8Array(Se + e * t * o);
   return q(s.length, (f) => {
     c[f] = s[f];
-  }), Vr(a, (f, g) => {
-    c[Se + g] = f;
+  }), Vr(a, (f, u) => {
+    c[Se + u] = f;
   }), c.buffer;
 }, Dn = (r) => {
   const e = {};
@@ -2448,38 +2448,38 @@ const Fn = (r, e, t, n) => {
 function Rn(r, e) {
   const t = typeof r[0] == "number";
   let n, i, s, a;
-  t ? (n = e.height || e.ImageLength, s = e.width || e.ImageWidth, i = r.length / (n * s), a = r) : (i = r.length, n = r[0].length, s = r[0][0].length, a = [], q(n, (g) => {
-    q(s, (l) => {
-      q(i, (h) => {
-        a.push(r[h][g][l]);
+  t ? (n = e.height || e.ImageLength, s = e.width || e.ImageWidth, i = r.length / (n * s), a = r) : (i = r.length, n = r[0].length, s = r[0][0].length, a = [], q(n, (u) => {
+    q(s, (d) => {
+      q(i, (l) => {
+        a.push(r[l][u][d]);
       });
     });
-  })), e.ImageLength = n, delete e.height, e.ImageWidth = s, delete e.width, e.BitsPerSample || (e.BitsPerSample = q(i, () => 8)), Cn.forEach((g) => {
-    const l = g[0];
-    if (!e[l]) {
-      const h = g[1];
-      e[l] = h;
+  })), e.ImageLength = n, delete e.height, e.ImageWidth = s, delete e.width, e.BitsPerSample || (e.BitsPerSample = q(i, () => 8)), Cn.forEach((u) => {
+    const d = u[0];
+    if (!e[d]) {
+      const l = u[1];
+      e[d] = l;
     }
   }), e.PhotometricInterpretation || (e.PhotometricInterpretation = e.BitsPerSample.length === 3 ? 2 : 1), e.SamplesPerPixel || (e.SamplesPerPixel = [i]), e.StripByteCounts || (e.StripByteCounts = [i * n * s]), e.ModelPixelScale || (e.ModelPixelScale = [360 / s, 180 / n, 0]), e.SampleFormat || (e.SampleFormat = q(i, () => 1)), !e.hasOwnProperty("GeographicTypeGeoKey") && !e.hasOwnProperty("ProjectedCSTypeGeoKey") && (e.GeographicTypeGeoKey = 4326, e.ModelTiepoint = [0, 0, 0, -180, 90, 0], e.GeogCitationGeoKey = "WGS 84", e.GTModelTypeGeoKey = 2);
-  const o = Object.keys(e).filter((g) => jt(g, "GeoKey")).sort((g, l) => ee[g] - ee[l]);
+  const o = Object.keys(e).filter((u) => jt(u, "GeoKey")).sort((u, d) => ee[u] - ee[d]);
   if (!e.GeoAsciiParams) {
-    let g = "";
-    o.forEach((l) => {
-      const h = Number(ee[l]);
-      Fe[h] === "ASCII" && (g += `${e[l].toString()}\0`);
-    }), g.length > 0 && (e.GeoAsciiParams = g);
+    let u = "";
+    o.forEach((d) => {
+      const l = Number(ee[d]);
+      Fe[l] === "ASCII" && (u += `${e[d].toString()}\0`);
+    }), u.length > 0 && (e.GeoAsciiParams = u);
   }
   if (!e.GeoKeyDirectory) {
-    const l = [1, 1, 0, o.length];
-    o.forEach((h) => {
-      const d = Number(ee[h]);
-      l.push(d);
-      let u, y, w;
-      Fe[d] === "SHORT" ? (u = 1, y = 0, w = e[h]) : h === "GeogCitationGeoKey" ? (u = e.GeoAsciiParams.length, y = Number(ee.GeoAsciiParams), w = 0) : console.log(`[geotiff.js] couldn't get TIFFTagLocation for ${h}`), l.push(y), l.push(u), l.push(w);
-    }), e.GeoKeyDirectory = l;
+    const d = [1, 1, 0, o.length];
+    o.forEach((l) => {
+      const h = Number(ee[l]);
+      d.push(h);
+      let g, p, w;
+      Fe[h] === "SHORT" ? (g = 1, p = 0, w = e[l]) : l === "GeogCitationGeoKey" ? (g = e.GeoAsciiParams.length, p = Number(ee.GeoAsciiParams), w = 0) : console.log(`[geotiff.js] couldn't get TIFFTagLocation for ${l}`), d.push(p), d.push(g), d.push(w);
+    }), e.GeoKeyDirectory = d;
   }
-  for (const g of o)
-    e.hasOwnProperty(g) && delete e[g];
+  for (const u of o)
+    e.hasOwnProperty(u) && delete e[u];
   [
     "Compression",
     "ExtraSamples",
@@ -2498,8 +2498,8 @@ function Rn(r, e) {
     "XPosition",
     "YPosition",
     "RowsPerStrip"
-  ].forEach((g) => {
-    e[g] && (e[g] = kn(e[g]));
+  ].forEach((u) => {
+    e[u] && (e[u] = kn(e[u]));
   });
   const c = Dn(e);
   return An(a, s, n, c);
@@ -2609,25 +2609,25 @@ class _n {
 }
 function Me(r) {
   switch (r) {
-    case M.BYTE:
-    case M.ASCII:
-    case M.SBYTE:
-    case M.UNDEFINED:
+    case O.BYTE:
+    case O.ASCII:
+    case O.SBYTE:
+    case O.UNDEFINED:
       return 1;
-    case M.SHORT:
-    case M.SSHORT:
+    case O.SHORT:
+    case O.SSHORT:
       return 2;
-    case M.LONG:
-    case M.SLONG:
-    case M.FLOAT:
-    case M.IFD:
+    case O.LONG:
+    case O.SLONG:
+    case O.FLOAT:
+    case O.IFD:
       return 4;
-    case M.RATIONAL:
-    case M.SRATIONAL:
-    case M.DOUBLE:
-    case M.LONG8:
-    case M.SLONG8:
-    case M.IFD8:
+    case O.RATIONAL:
+    case O.SRATIONAL:
+    case O.DOUBLE:
+    case O.LONG8:
+    case O.SLONG8:
+    case O.IFD8:
       return 8;
     default:
       throw new RangeError(`Invalid field type: ${r}`);
@@ -2639,7 +2639,7 @@ function Mn(r) {
     return null;
   const t = {};
   for (let n = 4; n <= e[3] * 4; n += 4) {
-    const i = ce[e[n]], s = e[n + 1] ? oe[e[n + 1]] : null, a = e[n + 2], o = e[n + 3];
+    const i = fe[e[n]], s = e[n + 1] ? ae[e[n + 1]] : null, a = e[n + 2], o = e[n + 3];
     let c = null;
     if (!s)
       c = o;
@@ -2652,54 +2652,54 @@ function Mn(r) {
   }
   return t;
 }
-function le(r, e, t, n) {
+function ce(r, e, t, n) {
   let i = null, s = null;
   const a = Me(e);
   switch (e) {
-    case M.BYTE:
-    case M.ASCII:
-    case M.UNDEFINED:
+    case O.BYTE:
+    case O.ASCII:
+    case O.UNDEFINED:
       i = new Uint8Array(t), s = r.readUint8;
       break;
-    case M.SBYTE:
+    case O.SBYTE:
       i = new Int8Array(t), s = r.readInt8;
       break;
-    case M.SHORT:
+    case O.SHORT:
       i = new Uint16Array(t), s = r.readUint16;
       break;
-    case M.SSHORT:
+    case O.SSHORT:
       i = new Int16Array(t), s = r.readInt16;
       break;
-    case M.LONG:
-    case M.IFD:
+    case O.LONG:
+    case O.IFD:
       i = new Uint32Array(t), s = r.readUint32;
       break;
-    case M.SLONG:
+    case O.SLONG:
       i = new Int32Array(t), s = r.readInt32;
       break;
-    case M.LONG8:
-    case M.IFD8:
+    case O.LONG8:
+    case O.IFD8:
       i = new Array(t), s = r.readUint64;
       break;
-    case M.SLONG8:
+    case O.SLONG8:
       i = new Array(t), s = r.readInt64;
       break;
-    case M.RATIONAL:
+    case O.RATIONAL:
       i = new Uint32Array(t * 2), s = r.readUint32;
       break;
-    case M.SRATIONAL:
+    case O.SRATIONAL:
       i = new Int32Array(t * 2), s = r.readInt32;
       break;
-    case M.FLOAT:
+    case O.FLOAT:
       i = new Float32Array(t), s = r.readFloat32;
       break;
-    case M.DOUBLE:
+    case O.DOUBLE:
       i = new Float64Array(t), s = r.readFloat64;
       break;
     default:
       throw new RangeError(`Invalid field type: ${e}`);
   }
-  if (e === M.RATIONAL || e === M.SRATIONAL)
+  if (e === O.RATIONAL || e === O.SRATIONAL)
     for (let o = 0; o < t; o += 2)
       i[o] = s.call(
         r,
@@ -2714,7 +2714,7 @@ function le(r, e, t, n) {
         r,
         n + o * a
       );
-  return e === M.ASCII ? new TextDecoder("utf-8").decode(i) : i;
+  return e === O.ASCII ? new TextDecoder("utf-8").decode(i) : i;
 }
 class Un {
   constructor(e, t, n) {
@@ -2744,60 +2744,60 @@ class $t {
     let { resX: s, resY: a, bbox: o } = e;
     const c = await this.getImage();
     let f = c;
-    const g = await this.getImageCount(), l = c.getBoundingBox();
+    const u = await this.getImageCount(), d = c.getBoundingBox();
     if (t && o)
       throw new Error('Both "bbox" and "window" passed.');
     if (n || i) {
       if (t) {
-        const [u, y] = c.getOrigin(), [w, x] = c.getResolution();
+        const [g, p] = c.getOrigin(), [w, T] = c.getResolution();
         o = [
-          u + t[0] * w,
-          y + t[1] * x,
-          u + t[2] * w,
-          y + t[3] * x
+          g + t[0] * w,
+          p + t[1] * T,
+          g + t[2] * w,
+          p + t[3] * T
         ];
       }
-      const d = o || l;
+      const h = o || d;
       if (n) {
         if (s)
           throw new Error("Both width and resX passed");
-        s = (d[2] - d[0]) / n;
+        s = (h[2] - h[0]) / n;
       }
       if (i) {
         if (a)
           throw new Error("Both width and resY passed");
-        a = (d[3] - d[1]) / i;
+        a = (h[3] - h[1]) / i;
       }
     }
     if (s || a) {
-      const d = [];
-      for (let u = 0; u < g; ++u) {
-        const y = await this.getImage(u), { SubfileType: w, NewSubfileType: x } = y.fileDirectory;
-        (u === 0 || w === 2 || x & 1) && d.push(y);
+      const h = [];
+      for (let g = 0; g < u; ++g) {
+        const p = await this.getImage(g), { SubfileType: w, NewSubfileType: T } = p.fileDirectory;
+        (g === 0 || w === 2 || T & 1) && h.push(p);
       }
-      d.sort((u, y) => u.getWidth() - y.getWidth());
-      for (let u = 0; u < d.length; ++u) {
-        const y = d[u], w = (l[2] - l[0]) / y.getWidth(), x = (l[3] - l[1]) / y.getHeight();
-        if (f = y, s && s > w || a && a > x)
+      h.sort((g, p) => g.getWidth() - p.getWidth());
+      for (let g = 0; g < h.length; ++g) {
+        const p = h[g], w = (d[2] - d[0]) / p.getWidth(), T = (d[3] - d[1]) / p.getHeight();
+        if (f = p, s && s > w || a && a > T)
           break;
       }
     }
-    let h = t;
+    let l = t;
     if (o) {
-      const [d, u] = c.getOrigin(), [y, w] = f.getResolution(c);
-      h = [
-        Math.round((o[0] - d) / y),
-        Math.round((o[1] - u) / w),
-        Math.round((o[2] - d) / y),
-        Math.round((o[3] - u) / w)
-      ], h = [
-        Math.min(h[0], h[2]),
-        Math.min(h[1], h[3]),
-        Math.max(h[0], h[2]),
-        Math.max(h[1], h[3])
+      const [h, g] = c.getOrigin(), [p, w] = f.getResolution(c);
+      l = [
+        Math.round((o[0] - h) / p),
+        Math.round((o[1] - g) / w),
+        Math.round((o[2] - h) / p),
+        Math.round((o[3] - g) / w)
+      ], l = [
+        Math.min(l[0], l[2]),
+        Math.min(l[1], l[3]),
+        Math.max(l[0], l[2]),
+        Math.max(l[1], l[3])
       ];
     }
-    return f.readRasters({ ...e, window: h });
+    return f.readRasters({ ...e, window: l });
   }
 }
 class Z extends $t {
@@ -2840,30 +2840,30 @@ class Z extends $t {
     i.covers(e, a) || (i = await this.getSlice(e, a));
     const o = {};
     let c = e + (this.bigTiff ? 8 : 2);
-    for (let l = 0; l < s; c += t, ++l) {
-      const h = i.readUint16(c), d = i.readUint16(c + 2), u = this.bigTiff ? i.readUint64(c + 4) : i.readUint32(c + 4);
-      let y, w;
-      const x = Me(d), b = c + (this.bigTiff ? 12 : 8);
-      if (x * u <= (this.bigTiff ? 8 : 4))
-        y = le(i, d, u, b);
+    for (let d = 0; d < s; c += t, ++d) {
+      const l = i.readUint16(c), h = i.readUint16(c + 2), g = this.bigTiff ? i.readUint64(c + 4) : i.readUint32(c + 4);
+      let p, w;
+      const T = Me(h), b = c + (this.bigTiff ? 12 : 8);
+      if (T * g <= (this.bigTiff ? 8 : 4))
+        p = ce(i, h, g, b);
       else {
-        const T = i.readOffset(b), F = Me(d) * u;
-        if (i.covers(T, F))
-          y = le(i, d, u, T);
+        const F = i.readOffset(b), S = Me(h) * g;
+        if (i.covers(F, S))
+          p = ce(i, h, g, F);
         else {
-          const k = await this.getSlice(T, F);
-          y = le(k, d, u, T);
+          const A = await this.getSlice(F, S);
+          p = ce(A, h, g, F);
         }
       }
-      u === 1 && kt.indexOf(h) === -1 && !(d === M.RATIONAL || d === M.SRATIONAL) ? w = y[0] : w = y, o[oe[h]] = w;
+      g === 1 && kt.indexOf(l) === -1 && !(h === O.RATIONAL || h === O.SRATIONAL) ? w = p[0] : w = p, o[ae[l]] = w;
     }
-    const f = Mn(o), g = i.readOffset(
+    const f = Mn(o), u = i.readOffset(
       e + n + t * s
     );
     return new Un(
       o,
       f,
-      g
+      u
     );
   }
   async requestIFD(e) {
@@ -2930,14 +2930,14 @@ class Z extends $t {
       return this.ghostValues;
     const t = "GDAL_STRUCTURAL_METADATA_SIZE=", n = t.length + 100;
     let i = await this.getSlice(e, n);
-    if (t === le(i, M.ASCII, t.length, e)) {
-      const a = le(i, M.ASCII, n, e).split(`
+    if (t === ce(i, O.ASCII, t.length, e)) {
+      const a = ce(i, O.ASCII, n, e).split(`
 `)[0], o = Number(a.split("=")[1].split(" ")[0]) + a.length;
       o > n && (i = await this.getSlice(e, o));
-      const c = le(i, M.ASCII, o, e);
+      const c = ce(i, O.ASCII, o, e);
       this.ghostValues = {}, c.split(`
-`).filter((f) => f.length > 0).map((f) => f.split("=")).forEach(([f, g]) => {
-        this.ghostValues[f] = g;
+`).filter((f) => f.length > 0).map((f) => f.split("=")).forEach(([f, u]) => {
+        this.ghostValues[f] = u;
       });
     }
     return this.ghostValues;
@@ -2968,8 +2968,8 @@ class Z extends $t {
         throw new Error("Unsupported offset byte-size.");
     } else
       throw new TypeError("Invalid magic number.");
-    const g = f ? s.getUint64(8, o) : s.getUint32(4, o);
-    return new Z(e, o, f, g, t);
+    const u = f ? s.getUint64(8, o) : s.getUint32(4, o);
+    return new Z(e, o, f, u, t);
   }
   /**
    * Closes the underlying file buffer
@@ -3102,7 +3102,7 @@ const Kn = (r) => {
     ), o = (n = a == null ? void 0 : a.querySelector("Name")) == null ? void 0 : n.textContent, c = (i = a == null ? void 0 : a.querySelector("Color")) == null ? void 0 : i.textContent;
     if (!o)
       continue;
-    const f = c ? c.split(",").map((g) => parseInt(g)) : [255, 255, 255];
+    const f = c ? c.split(",").map((u) => parseInt(u)) : [255, 255, 255];
     e.has(o) || e.set(o, {
       name: o,
       color: f,
@@ -3116,23 +3116,23 @@ class ne {
     let t, n, i;
     if (e.length === 1) {
       const o = e[0], c = new Uint8ClampedArray(o.length * 4 / 3);
-      for (let f = 0, g = 0; f < o.length; f += 3, g += 4)
-        t = o[f], n = o[f + 1], i = o[f + 2], c[g] = t + 1.402 * (i - 128), c[g + 1] = t - 0.34414 * (n - 128) - 0.71414 * (i - 128), c[g + 2] = t + 1.772 * (n - 128), c[g + 3] = 255;
+      for (let f = 0, u = 0; f < o.length; f += 3, u += 4)
+        t = o[f], n = o[f + 1], i = o[f + 2], c[u] = t + 1.402 * (i - 128), c[u + 1] = t - 0.34414 * (n - 128) - 0.71414 * (i - 128), c[u + 2] = t + 1.772 * (n - 128), c[u + 3] = 255;
       return c;
     }
     [t, n, i] = e;
     const s = t.length, a = new Uint8ClampedArray(s * 4);
     for (let o = 0, c = 0; o < s; o++, c += 4) {
-      const f = t[o], g = n[o], l = i[o];
-      a[c] = f + 1.402 * (l - 128), a[c + 1] = f - 0.34414 * (g - 128) - 0.71414 * (l - 128), a[c + 2] = f + 1.772 * (g - 128), a[c + 3] = 255;
+      const f = t[o], u = n[o], d = i[o];
+      a[c] = f + 1.402 * (d - 128), a[c + 1] = f - 0.34414 * (u - 128) - 0.71414 * (d - 128), a[c + 2] = f + 1.772 * (u - 128), a[c + 3] = 255;
     }
     return a;
   }
   static RGBAfromRGB(...e) {
     if (e.length === 1) {
       const c = e[0], f = new Uint8ClampedArray(c.length * 4 / 3);
-      for (let g = 0, l = 0; g < c.length; g += 3, l += 4)
-        f[l] = c[g], f[l + 1] = c[g + 1], f[l + 2] = c[g + 2], f[l + 3] = 255;
+      for (let u = 0, d = 0; u < c.length; u += 3, d += 4)
+        f[d] = c[u], f[d + 1] = c[u + 1], f[d + 2] = c[u + 2], f[d + 3] = 255;
       return f;
     }
     const t = e[0], n = e[1], i = e[2], s = e.length >= 4 ? e[3] : null, a = t.length, o = new Uint8ClampedArray(a * 4);
@@ -3165,45 +3165,45 @@ class ne {
   static RGBAfromCMYK(...e) {
     if (e.length === 1) {
       const c = e[0], f = new Uint8ClampedArray(c.length);
-      for (let g = 0, l = 0; g < c.length; g += 4, l += 4) {
-        const h = c[g], d = c[g + 1], u = c[g + 2], y = c[g + 3];
-        f[l] = 255 * ((255 - h) / 256) * ((255 - y) / 256), f[l + 1] = 255 * ((255 - d) / 256) * ((255 - y) / 256), f[l + 2] = 255 * ((255 - u) / 256) * ((255 - y) / 256), f[l + 3] = 255;
+      for (let u = 0, d = 0; u < c.length; u += 4, d += 4) {
+        const l = c[u], h = c[u + 1], g = c[u + 2], p = c[u + 3];
+        f[d] = 255 * ((255 - l) / 256) * ((255 - p) / 256), f[d + 1] = 255 * ((255 - h) / 256) * ((255 - p) / 256), f[d + 2] = 255 * ((255 - g) / 256) * ((255 - p) / 256), f[d + 3] = 255;
       }
       return f;
     }
     const t = e[0], n = e[1], i = e[2], s = e[3], a = t.length, o = new Uint8ClampedArray(a * 4);
     for (let c = 0, f = 0; c < a; c++, f += 4) {
-      const g = t[c], l = n[c], h = i[c], d = s[c];
-      o[f] = 255 * ((255 - g) / 256) * ((255 - d) / 256), o[f + 1] = 255 * ((255 - l) / 256) * ((255 - d) / 256), o[f + 2] = 255 * ((255 - h) / 256) * ((255 - d) / 256), o[f + 3] = 255;
+      const u = t[c], d = n[c], l = i[c], h = s[c];
+      o[f] = 255 * ((255 - u) / 256) * ((255 - h) / 256), o[f + 1] = 255 * ((255 - d) / 256) * ((255 - h) / 256), o[f + 2] = 255 * ((255 - l) / 256) * ((255 - h) / 256), o[f + 3] = 255;
     }
     return o;
   }
   static RGBAfromCIELab(...e) {
-    const s = (l, h, d) => {
-      const u = h << 24 >> 24, y = d << 24 >> 24;
-      let w = (l + 16) / 116, x = u / 500 + w, b = w - y / 200;
-      x = 0.95047 * (x * x * x > 8856e-6 ? x * x * x : (x - 0.13793103448275862) / 7.787), w = 1 * (w * w * w > 8856e-6 ? w * w * w : (w - 0.13793103448275862) / 7.787), b = 1.08883 * (b * b * b > 8856e-6 ? b * b * b : (b - 0.13793103448275862) / 7.787);
-      let T = x * 3.2406 + w * -1.5372 + b * -0.4986, F = x * -0.9689 + w * 1.8758 + b * 0.0415, k = x * 0.0557 + w * -0.204 + b * 1.057;
-      return T = T > 31308e-7 ? 1.055 * T ** 0.4166666666666667 - 0.055 : 12.92 * T, F = F > 31308e-7 ? 1.055 * F ** 0.4166666666666667 - 0.055 : 12.92 * F, k = k > 31308e-7 ? 1.055 * k ** 0.4166666666666667 - 0.055 : 12.92 * k, [
-        Math.max(0, Math.min(1, T)) * 255,
+    const s = (d, l, h) => {
+      const g = l << 24 >> 24, p = h << 24 >> 24;
+      let w = (d + 16) / 116, T = g / 500 + w, b = w - p / 200;
+      T = 0.95047 * (T * T * T > 8856e-6 ? T * T * T : (T - 0.13793103448275862) / 7.787), w = 1 * (w * w * w > 8856e-6 ? w * w * w : (w - 0.13793103448275862) / 7.787), b = 1.08883 * (b * b * b > 8856e-6 ? b * b * b : (b - 0.13793103448275862) / 7.787);
+      let F = T * 3.2406 + w * -1.5372 + b * -0.4986, S = T * -0.9689 + w * 1.8758 + b * 0.0415, A = T * 0.0557 + w * -0.204 + b * 1.057;
+      return F = F > 31308e-7 ? 1.055 * F ** 0.4166666666666667 - 0.055 : 12.92 * F, S = S > 31308e-7 ? 1.055 * S ** 0.4166666666666667 - 0.055 : 12.92 * S, A = A > 31308e-7 ? 1.055 * A ** 0.4166666666666667 - 0.055 : 12.92 * A, [
         Math.max(0, Math.min(1, F)) * 255,
-        Math.max(0, Math.min(1, k)) * 255
+        Math.max(0, Math.min(1, S)) * 255,
+        Math.max(0, Math.min(1, A)) * 255
       ];
     };
     if (e.length === 1) {
-      const l = e[0], h = new Uint8ClampedArray(l.length * 4 / 3);
-      for (let d = 0, u = 0; d < l.length; d += 3, u += 4) {
-        const [y, w, x] = s(l[d], l[d + 1], l[d + 2]);
-        h[u] = y, h[u + 1] = w, h[u + 2] = x, h[u + 3] = 255;
+      const d = e[0], l = new Uint8ClampedArray(d.length * 4 / 3);
+      for (let h = 0, g = 0; h < d.length; h += 3, g += 4) {
+        const [p, w, T] = s(d[h], d[h + 1], d[h + 2]);
+        l[g] = p, l[g + 1] = w, l[g + 2] = T, l[g + 3] = 255;
       }
-      return h;
+      return l;
     }
-    const a = e[0], o = e[1], c = e[2], f = a.length, g = new Uint8ClampedArray(f * 4);
-    for (let l = 0, h = 0; l < f; l++, h += 4) {
-      const [d, u, y] = s(a[l], o[l], c[l]);
-      g[h] = d, g[h + 1] = u, g[h + 2] = y, g[h + 3] = 255;
+    const a = e[0], o = e[1], c = e[2], f = a.length, u = new Uint8ClampedArray(f * 4);
+    for (let d = 0, l = 0; d < f; d++, l += 4) {
+      const [h, g, p] = s(a[d], o[d], c[d]);
+      u[l] = h, u[l + 1] = g, u[l + 2] = p, u[l + 3] = 255;
     }
-    return g;
+    return u;
   }
 }
 const Hn = {
@@ -3312,7 +3312,7 @@ function Yn() {
     import.meta.url
   ), { type: "module" });
 }
-class ie {
+class se {
   /**
    * @param {ArrayBuffer|Uint8Array|Blob|{bytes?:any, blob?:Blob, arrayBuffer?:Function}} source
    * @param {Object} [opts]
@@ -3347,12 +3347,12 @@ class je {
     return "tiffRaster";
   }
 }
-function se(r, e) {
+function oe(r, e) {
   const t = Array.isArray(r) ? r.slice() : Object.assign({}, r || {});
   if (!e || typeof e != "object") return t;
   for (const n of Object.keys(e)) {
     const i = e[n];
-    i && typeof i == "object" && !Array.isArray(i) && t[n] && typeof t[n] == "object" && !Array.isArray(t[n]) ? t[n] = se(t[n], i) : t[n] = i;
+    i && typeof i == "object" && !Array.isArray(i) && t[n] && typeof t[n] == "object" && !Array.isArray(t[n]) ? t[n] = oe(t[n], i) : t[n] = i;
   }
   return t;
 }
@@ -3405,7 +3405,7 @@ function Jn(r, e = {}) {
   if (t.RawTiffPlugin && t.RawTiffPlugin.__installed) return t.RawTiffPlugin;
   const n = Object.assign({
     toneMap: null,
-    format: se(Hn, e.defaults && e.defaults.format || null)
+    format: oe(Hn, e.defaults && e.defaults.format || null)
   }, e.defaults || {}), i = Object.assign({
     enabled: !0,
     // Use up to (N-1) cores, capped at 8. Leaving one core for the main thread.
@@ -3416,160 +3416,160 @@ function Jn(r, e = {}) {
     enableRawTiffToImageBitmap: !0
   }, e.workerPool || {}), s = t.RawTiffPluginShared = t.RawTiffPluginShared || {};
   function a() {
-    var p, I;
+    var m, x;
     if (!i.enabled || typeof Worker > "u") return null;
     if (s.__rawTiffWorkerPool) return s.__rawTiffWorkerPool;
-    const m = i.createWorker || Yn;
+    const y = i.createWorker || Yn;
     try {
       return s.__rawTiffWorkerPool = new Vn({
         size: i.size,
-        createWorker: m
+        createWorker: y
       }), s.__rawTiffWorkerPool;
-    } catch (E) {
-      return (I = (p = t.console) == null ? void 0 : p.warn) == null || I.call(p, "[RawTiffPlugin] Failed to create worker pool; falling back to main thread.", E), s.__rawTiffWorkerPool = null, null;
+    } catch (k) {
+      return (x = (m = t.console) == null ? void 0 : m.warn) == null || x.call(m, "[RawTiffPlugin] Failed to create worker pool; falling back to main thread.", k), s.__rawTiffWorkerPool = null, null;
     }
   }
-  async function o(m) {
-    if (m == null) throw new Error("[RawTiffPlugin] rawTiff is null/undefined.");
-    if (m instanceof ie) return o(m.source);
-    if (typeof m == "object") {
-      if (typeof m.arrayBuffer == "function") {
-        const p = await m.arrayBuffer();
-        if (p instanceof ArrayBuffer) return p;
+  async function o(y) {
+    if (y == null) throw new Error("[RawTiffPlugin] rawTiff is null/undefined.");
+    if (y instanceof se) return o(y.source);
+    if (typeof y == "object") {
+      if (typeof y.arrayBuffer == "function") {
+        const m = await y.arrayBuffer();
+        if (m instanceof ArrayBuffer) return m;
       }
-      if (m.bytes != null) return o(m.bytes);
-      if (m.blob != null) return o(m.blob);
+      if (y.bytes != null) return o(y.bytes);
+      if (y.blob != null) return o(y.blob);
     }
-    if (typeof Blob < "u" && m instanceof Blob) return await m.arrayBuffer();
-    if (m instanceof ArrayBuffer) return m;
-    if (ArrayBuffer.isView(m)) {
-      const { buffer: p, byteOffset: I, byteLength: E } = m;
-      return p.slice(I, I + E);
+    if (typeof Blob < "u" && y instanceof Blob) return await y.arrayBuffer();
+    if (y instanceof ArrayBuffer) return y;
+    if (ArrayBuffer.isView(y)) {
+      const { buffer: m, byteOffset: x, byteLength: k } = y;
+      return m.slice(x, x + k);
     }
     throw new Error("[RawTiffPlugin] Unsupported rawTiff payload. Provide ArrayBuffer, TypedArray, Blob, or RawTiff wrapper.");
   }
-  async function c(m) {
-    return typeof m.getImageCount == "function" ? await m.getImageCount() : typeof m.getImages == "function" ? (await m.getImages()).length : 1;
+  async function c(y) {
+    return typeof y.getImageCount == "function" ? await y.getImageCount() : typeof y.getImages == "function" ? (await y.getImages()).length : 1;
   }
-  async function f(m, p) {
-    if (typeof m.getImage == "function") return await m.getImage(p);
-    if (typeof m.getImages == "function") return (await m.getImages())[p];
+  async function f(y, m) {
+    if (typeof y.getImage == "function") return await y.getImage(m);
+    if (typeof y.getImages == "function") return (await y.getImages())[m];
     throw new Error("[RawTiffPlugin] geotiff instance does not expose getImage/getImages.");
   }
-  async function g(m, p) {
+  async function u(y, m) {
     if (!t.supportsAsync) throw new Error("[RawTiffPlugin] Not supported in sync mode.");
-    const I = p && p.hints || (p instanceof ie ? p.hints : null) || {}, E = await o(p);
-    let C;
+    const x = m && m.hints || (m instanceof se ? m.hints : null) || {}, k = await o(m);
+    let U;
     if (typeof Le == "function")
-      C = await Le(E);
+      U = await Le(k);
     else if (typeof we == "function")
-      C = await we(new Blob([E], { type: "image/tiff" }));
+      U = await we(new Blob([k], { type: "image/tiff" }));
     else
       throw new Error("[RawTiffPlugin] geotiff module does not provide fromArrayBuffer/fromBlob.");
-    const v = await c(C);
-    let B = I.imageIndex;
-    if (v > 1) {
-      if (typeof B != "number" || !Number.isFinite(B))
-        throw new Error(`[RawTiffPlugin] TIFF contains ${v} images. Provide rawTiff.hints.imageIndex.`);
-      if (B < 0 || B >= v)
-        throw new Error(`[RawTiffPlugin] imageIndex ${B} out of range (0..${v - 1}).`);
+    const C = await c(U);
+    let E = x.imageIndex;
+    if (C > 1) {
+      if (typeof E != "number" || !Number.isFinite(E))
+        throw new Error(`[RawTiffPlugin] TIFF contains ${C} images. Provide rawTiff.hints.imageIndex.`);
+      if (E < 0 || E >= C)
+        throw new Error(`[RawTiffPlugin] imageIndex ${E} out of range (0..${C - 1}).`);
     } else
-      B = 0;
-    const A = await f(C, B), G = typeof A.getWidth == "function" ? A.getWidth() : A.width, S = typeof A.getHeight == "function" ? A.getHeight() : A.height, D = typeof A.getSamplesPerPixel == "function" ? A.getSamplesPerPixel() : A.samplesPerPixel || 1, O = typeof A.getBitsPerSample == "function" ? A.getBitsPerSample() : A.bitsPerSample || [8], R = typeof A.getSampleFormat == "function" ? A.getSampleFormat() : A.sampleFormat || null, L = typeof A.getPhotometricInterpretation == "function" ? A.getPhotometricInterpretation() : A.fileDirectory ? A.fileDirectory.PhotometricInterpretation : void 0, P = A.fileDirectory || null, U = P && P.ColorMap ? P.ColorMap : null, _ = Object.assign({ interleave: !1 }, I.decode || {}), N = await A.readRasters(_), W = Array.isArray(N) ? N : [N], V = Math.max(D || 0, W.length);
+      E = 0;
+    const P = await f(U, E), N = typeof P.getWidth == "function" ? P.getWidth() : P.width, D = typeof P.getHeight == "function" ? P.getHeight() : P.height, I = typeof P.getSamplesPerPixel == "function" ? P.getSamplesPerPixel() : P.samplesPerPixel || 1, v = typeof P.getBitsPerSample == "function" ? P.getBitsPerSample() : P.bitsPerSample || [8], R = typeof P.getSampleFormat == "function" ? P.getSampleFormat() : P.sampleFormat || null, L = typeof P.getPhotometricInterpretation == "function" ? P.getPhotometricInterpretation() : P.fileDirectory ? P.fileDirectory.PhotometricInterpretation : void 0, G = P.fileDirectory || null, B = G && G.ColorMap ? G.ColorMap : null, M = Object.assign({ interleave: !1 }, x.decode || {}), _ = await P.readRasters(M), W = Array.isArray(_) ? _ : [_], Y = Math.max(I || 0, W.length);
     return new je({
-      width: G,
-      height: S,
+      width: N,
+      height: D,
       bands: W,
-      samplesPerPixel: V,
-      bitsPerSample: Array.isArray(O) ? O : [O],
+      samplesPerPixel: Y,
+      bitsPerSample: Array.isArray(v) ? v : [v],
       sampleFormat: Array.isArray(R) ? R : R ? [R] : null,
       photometricInterpretation: L,
-      colorMap: U,
-      fileDirectory: P,
-      hints: I
+      colorMap: B,
+      fileDirectory: G,
+      hints: x
     });
   }
-  async function l(m, p, I) {
-    const E = p && p.hints || (p instanceof ie ? p.hints : null) || {}, C = await o(p), v = pe(m, p), B = se(n.format, v || null), A = Object.assign({}, E, { formatResolved: B }), G = i && i.transferInput ? [C] : [], S = await I.request("decodeRaster", { buffer: C, hints: A }, G);
-    return Zn(S, A);
+  async function d(y, m, x) {
+    const k = m && m.hints || (m instanceof se ? m.hints : null) || {}, U = await o(m), C = pe(y, m), E = oe(n.format, C || null), P = Object.assign({}, k, { formatResolved: E }), N = i && i.transferInput ? [U] : [], D = await x.request("decodeRaster", { buffer: U, hints: P }, N);
+    return Zn(D, P);
   }
-  async function h(m, p) {
+  async function l(y, m) {
     if (!t.supportsAsync) throw new Error("[RawTiffPlugin] Not supported in sync mode.");
-    const I = a();
-    return I ? await l(m, p, I) : await g(m, p);
+    const x = a();
+    return x ? await d(y, m, x) : await u(y, m);
   }
-  async function d(m, p) {
-    const I = p && p.hints || (p instanceof ie ? p.hints : null) || {}, E = a();
-    if (E) {
-      const v = await o(p), B = pe(m, p), A = se(n.format, B || null), G = Object.assign({}, I, { formatResolved: A }), S = i && i.transferInput ? [v] : [], D = await E.request("decodeAndRenderImageBitmap", { buffer: v, hints: G }, S);
-      if (D && D.kind === "imageBitmap") return D.imageBitmap;
-      if (D && D.kind === "rgba8") {
+  async function h(y, m) {
+    const x = m && m.hints || (m instanceof se ? m.hints : null) || {}, k = a();
+    if (k) {
+      const C = await o(m), E = pe(y, m), P = oe(n.format, E || null), N = Object.assign({}, x, { formatResolved: P }), D = i && i.transferInput ? [C] : [], I = await k.request("decodeAndRenderImageBitmap", { buffer: C, hints: N }, D);
+      if (I && I.kind === "imageBitmap") return I.imageBitmap;
+      if (I && I.kind === "rgba8") {
         if (typeof createImageBitmap != "function")
           throw new Error("[RawTiffPlugin] createImageBitmap is not available to build ImageBitmap fallback.");
-        const O = new Uint8ClampedArray(D.rgbaBuffer, D.rgbaByteOffset || 0, D.rgbaLength), R = new ImageData(O, D.width, D.height);
+        const v = new Uint8ClampedArray(I.rgbaBuffer, I.rgbaByteOffset || 0, I.rgbaLength), R = new ImageData(v, I.width, I.height);
         return await createImageBitmap(R);
       }
       throw new Error("[RawTiffPlugin] Worker did not return a supported output.");
     }
-    const C = await g(m, p);
-    return await T(m, C);
+    const U = await u(y, m);
+    return await F(y, U);
   }
-  async function u(m, p) {
-    const I = a();
-    if (!I) return T(m, p);
-    const E = p && p.hints || {}, C = pe(m, p), v = se(n.format, C || null), B = Object.assign({}, E, { formatResolved: v }), A = /* @__PURE__ */ new Set(), G = [], S = p.bands.map((R) => {
+  async function g(y, m) {
+    const x = a();
+    if (!x) return F(y, m);
+    const k = m && m.hints || {}, U = pe(y, m), C = oe(n.format, U || null), E = Object.assign({}, k, { formatResolved: C }), P = /* @__PURE__ */ new Set(), N = [], D = m.bands.map((R) => {
       var L;
-      return A.has(R.buffer) || (A.add(R.buffer), G.push(R.buffer)), {
+      return P.has(R.buffer) || (P.add(R.buffer), N.push(R.buffer)), {
         ctor: ((L = R.constructor) == null ? void 0 : L.name) || "Uint8Array",
         buffer: R.buffer,
         byteOffset: R.byteOffset,
         length: R.length
       };
-    }), D = {
-      width: p.width,
-      height: p.height,
-      bands: S,
-      samplesPerPixel: p.samplesPerPixel,
-      bitsPerSample: p.bitsPerSample,
-      sampleFormat: p.sampleFormat,
-      photometricInterpretation: p.photometricInterpretation,
-      colorMap: p.colorMap,
-      fileDirectory: p.fileDirectory
-    }, O = await I.request("rasterToImageBitmap", { raster: D, hints: B }, G);
-    if (O.kind === "imageBitmap") return O.imageBitmap;
-    if (O.kind === "rgba8") {
+    }), I = {
+      width: m.width,
+      height: m.height,
+      bands: D,
+      samplesPerPixel: m.samplesPerPixel,
+      bitsPerSample: m.bitsPerSample,
+      sampleFormat: m.sampleFormat,
+      photometricInterpretation: m.photometricInterpretation,
+      colorMap: m.colorMap,
+      fileDirectory: m.fileDirectory
+    }, v = await x.request("rasterToImageBitmap", { raster: I, hints: E }, N);
+    if (v.kind === "imageBitmap") return v.imageBitmap;
+    if (v.kind === "rgba8") {
       if (typeof createImageBitmap != "function")
         throw new Error("[RawTiffPlugin] createImageBitmap is not available.");
-      const R = new Uint8ClampedArray(O.rgbaBuffer, O.rgbaByteOffset || 0, O.rgbaLength), L = new ImageData(R, O.width, O.height);
+      const R = new Uint8ClampedArray(v.rgbaBuffer, v.rgbaByteOffset || 0, v.rgbaLength), L = new ImageData(R, v.width, v.height);
       return await createImageBitmap(L);
     }
     throw new Error("[RawTiffPlugin] Worker returned unsupported result kind for rasterToImageBitmap.");
   }
-  async function y(m, p) {
-    const I = p && p.hints || (p instanceof ie ? p.hints : null) || {}, E = a();
-    if (!E) {
-      const O = await g(m, p);
-      return await w(m, O);
+  async function p(y, m) {
+    const x = m && m.hints || (m instanceof se ? m.hints : null) || {}, k = a();
+    if (!k) {
+      const v = await u(y, m);
+      return await w(y, v);
     }
-    const C = await o(p), v = pe(m, p), B = se(n.format, v || null), A = Object.assign({}, I, { formatResolved: B }), G = i && i.transferInput ? [C] : [], S = await E.request("decodeAndPackGpuTextureSet", { buffer: C, hints: A }, G), D = lt(S.texSet);
-    return D.hints = A, D;
+    const U = await o(m), C = pe(y, m), E = oe(n.format, C || null), P = Object.assign({}, x, { formatResolved: E }), N = i && i.transferInput ? [U] : [], D = await k.request("decodeAndPackGpuTextureSet", { buffer: U, hints: P }, N), I = lt(D.texSet);
+    return I.hints = P, I;
   }
-  async function w(m, p) {
-    const I = a();
-    if (!I) {
+  async function w(y, m) {
+    const x = a();
+    if (!x) {
       te("gpuTextureSet_no_worker", "[RawTiffPlugin] No worker pool available; gpuTextureSet packing will fall back to worker-less path (slower).", "warn");
-      const R = p.width, L = p.height, P = R * L, U = new Uint8Array(P * 4);
-      for (let _ = 0, N = 0; _ < P; _++, N += 4)
-        U[N] = p.bands[0] ? p.bands[0][_] : 0, U[N + 1] = p.bands[1] ? p.bands[1][_] : 0, U[N + 2] = p.bands[2] ? p.bands[2][_] : 0, U[N + 3] = p.bands[3] ? p.bands[3][_] : 255;
+      const R = m.width, L = m.height, G = R * L, B = new Uint8Array(G * 4);
+      for (let M = 0, _ = 0; M < G; M++, _ += 4)
+        B[_] = m.bands[0] ? m.bands[0][M] : 0, B[_ + 1] = m.bands[1] ? m.bands[1][M] : 0, B[_ + 2] = m.bands[2] ? m.bands[2][M] : 0, B[_ + 3] = m.bands[3] ? m.bands[3][M] : 255;
       return new Ne({
         width: R,
         height: L,
         mode: "data",
-        channelCount: p.bands ? p.bands.length : 0,
-        packs: [{ format: "RGBA8", data: U, channels: [0, 1, 2, 3], normalized: !1, scale: [1, 1, 1, 1], offset: [0, 0, 0, 0] }]
+        channelCount: m.bands ? m.bands.length : 0,
+        packs: [{ format: "RGBA8", data: B, channels: [0, 1, 2, 3], normalized: !1, scale: [1, 1, 1, 1], offset: [0, 0, 0, 0] }]
       });
     }
-    const E = p.hints || {}, C = pe(m, p), v = se(n.format, C || null), B = Object.assign({}, E, { formatResolved: v }), A = p.bands.map((R) => {
+    const k = m.hints || {}, U = pe(y, m), C = oe(n.format, U || null), E = Object.assign({}, k, { formatResolved: C }), P = m.bands.map((R) => {
       var L;
       return {
         ctor: ((L = R.constructor) == null ? void 0 : L.name) || "Uint8Array",
@@ -3577,107 +3577,107 @@ function Jn(r, e = {}) {
         byteOffset: R.byteOffset,
         length: R.length
       };
-    }), G = {
-      width: p.width,
-      height: p.height,
-      bands: A,
-      samplesPerPixel: p.samplesPerPixel,
-      bitsPerSample: p.bitsPerSample,
-      sampleFormat: p.sampleFormat,
-      photometricInterpretation: p.photometricInterpretation,
-      colorMap: p.colorMap,
-      fileDirectory: p.fileDirectory
-    }, S = A.map((R) => R.buffer), D = await I.request("rasterToGpuTextureSet", { raster: G, hints: B }, S), O = lt(D);
-    return O.hints = B, O;
+    }), N = {
+      width: m.width,
+      height: m.height,
+      bands: P,
+      samplesPerPixel: m.samplesPerPixel,
+      bitsPerSample: m.bitsPerSample,
+      sampleFormat: m.sampleFormat,
+      photometricInterpretation: m.photometricInterpretation,
+      colorMap: m.colorMap,
+      fileDirectory: m.fileDirectory
+    }, D = P.map((R) => R.buffer), I = await x.request("rasterToGpuTextureSet", { raster: N, hints: E }, D), v = lt(I);
+    return v.hints = E, v;
   }
-  function x(m, p, I) {
-    if (m == null || Number.isNaN(m)) return 0;
-    const E = I.bands[p];
-    if (E instanceof Float32Array || E instanceof Float64Array) {
-      const A = Math.max(0, Math.min(1, m));
-      return Math.round(A * 255);
+  function T(y, m, x) {
+    if (y == null || Number.isNaN(y)) return 0;
+    const k = x.bands[m];
+    if (k instanceof Float32Array || k instanceof Float64Array) {
+      const P = Math.max(0, Math.min(1, y));
+      return Math.round(P * 255);
     }
-    const v = I.bitsPerSample && I.bitsPerSample[p] != null ? I.bitsPerSample[p] : I.bitsPerSample ? I.bitsPerSample[0] : 8, B = v <= 0 ? 255 : Math.pow(2, v) - 1;
-    return B <= 255 ? Math.max(0, Math.min(255, m)) : Math.round(Math.max(0, Math.min(1, m / B)) * 255);
+    const C = x.bitsPerSample && x.bitsPerSample[m] != null ? x.bitsPerSample[m] : x.bitsPerSample ? x.bitsPerSample[0] : 8, E = C <= 0 ? 255 : Math.pow(2, C) - 1;
+    return E <= 255 ? Math.max(0, Math.min(255, y)) : Math.round(Math.max(0, Math.min(1, y / E)) * 255);
   }
-  function b(m) {
-    const p = n.toneMap || x, I = z || {}, E = m.width, C = m.height, v = E * C, B = m.hints.renderChannels || m.renderChannels || null, A = m.samplesPerPixel || m.bands.length || 1, G = (P, U) => p(m.bands[P][U], P, m), S = m.photometricInterpretation;
-    if (S === I.Palette && m.colorMap) {
-      const P = m.bands[0];
-      return ne.RGBAfromPalette(P, m.colorMap);
+  function b(y) {
+    const m = n.toneMap || T, x = z || {}, k = y.width, U = y.height, C = k * U, E = y.hints.renderChannels || y.renderChannels || null, P = y.samplesPerPixel || y.bands.length || 1, N = (G, B) => m(y.bands[G][B], G, y), D = y.photometricInterpretation;
+    if (D === x.Palette && y.colorMap) {
+      const G = y.bands[0];
+      return ne.RGBAfromPalette(G, y.colorMap);
     }
-    if ((S === I.WhiteIsZero || S === I.BlackIsZero) && A >= 1) {
-      const P = m.bands[0], U = m.bitsPerSample && m.bitsPerSample[0] != null ? m.bitsPerSample[0] : 8, _ = Math.pow(2, U) - 1;
-      if (S === I.WhiteIsZero) return ne.RGBAfromWhiteIsZero(P, _);
-      if (S === I.BlackIsZero) return ne.RGBAfromBlackIsZero(P, _);
-      const N = new Uint8ClampedArray(v * 4);
-      for (let W = 0, V = 0; W < v; W++, V += 4) {
-        let Y = p(P[W], 0, m);
-        S === I.WhiteIsZero && (Y = 255 - Y), N[V] = N[V + 1] = N[V + 2] = Y, N[V + 3] = 255;
+    if ((D === x.WhiteIsZero || D === x.BlackIsZero) && P >= 1) {
+      const G = y.bands[0], B = y.bitsPerSample && y.bitsPerSample[0] != null ? y.bitsPerSample[0] : 8, M = Math.pow(2, B) - 1;
+      if (D === x.WhiteIsZero) return ne.RGBAfromWhiteIsZero(G, M);
+      if (D === x.BlackIsZero) return ne.RGBAfromBlackIsZero(G, M);
+      const _ = new Uint8ClampedArray(C * 4);
+      for (let W = 0, Y = 0; W < C; W++, Y += 4) {
+        let V = m(G[W], 0, y);
+        D === x.WhiteIsZero && (V = 255 - V), _[Y] = _[Y + 1] = _[Y + 2] = V, _[Y + 3] = 255;
       }
-      return N;
+      return _;
     }
-    const D = B || (S === I.RGB || S === I.YCbCr || S === I.CIELab ? [0, 1, 2] : A >= 3 ? [0, 1, 2] : [0]);
-    if (D.length > 4 && (te(
+    const I = E || (D === x.RGB || D === x.YCbCr || D === x.CIELab ? [0, 1, 2] : P >= 3 ? [0, 1, 2] : [0]);
+    if (I.length > 4 && (te(
       "renderChannels>4_to_RGBA",
-      `[tiff] Requested ${D.length} channels for RGBA output; only 4 can be represented. Extra channels will be dropped.`,
+      `[tiff] Requested ${I.length} channels for RGBA output; only 4 can be represented. Extra channels will be dropped.`,
       "warn"
-    ), D.splice(4)), D.length === 1) {
-      const P = D[0], U = new Uint8ClampedArray(v * 4);
-      for (let _ = 0, N = 0; _ < v; _++, N += 4) {
-        const W = G(P, _);
-        U[N] = U[N + 1] = U[N + 2] = W, U[N + 3] = 255;
+    ), I.splice(4)), I.length === 1) {
+      const G = I[0], B = new Uint8ClampedArray(C * 4);
+      for (let M = 0, _ = 0; M < C; M++, _ += 4) {
+        const W = N(G, M);
+        B[_] = B[_ + 1] = B[_ + 2] = W, B[_ + 3] = 255;
       }
-      return U;
+      return B;
     }
-    const O = new Uint8ClampedArray(v * D.length);
-    for (let P = 0; P < v; P++) {
-      const U = P * D.length;
-      for (let _ = 0; _ < D.length; _++) {
-        const N = D[_];
-        O[U + _] = N < m.bands.length ? G(N, P) : 0;
+    const v = new Uint8ClampedArray(C * I.length);
+    for (let G = 0; G < C; G++) {
+      const B = G * I.length;
+      for (let M = 0; M < I.length; M++) {
+        const _ = I[M];
+        v[B + M] = _ < y.bands.length ? N(_, G) : 0;
       }
     }
-    if (S === I.YCbCr && D.length >= 3) return ne.RGBAfromYCbCr(O);
-    if (S === I.CMYK && D.length >= 4) return ne.RGBAfromCMYK(O);
-    if (S === I.CIELab && D.length >= 3) return ne.RGBAfromCIELab(O);
-    if (D.length === 4) return O;
-    if (D.length === 3) return ne.RGBAfromRGB(O);
-    const R = new Uint8ClampedArray(v * 4), L = D.length >= 4;
-    for (let P = 0, U = 0; P < v; P++, U += 4) {
-      const _ = P * D.length;
-      R[U] = O[_], R[U + 1] = O[_ + 1] || 0, R[U + 2] = O[_ + 2] || 0, R[U + 3] = L ? O[_ + 3] : 255;
+    if (D === x.YCbCr && I.length >= 3) return ne.RGBAfromYCbCr(v);
+    if (D === x.CMYK && I.length >= 4) return ne.RGBAfromCMYK(v);
+    if (D === x.CIELab && I.length >= 3) return ne.RGBAfromCIELab(v);
+    if (I.length === 4) return v;
+    if (I.length === 3) return ne.RGBAfromRGB(v);
+    const R = new Uint8ClampedArray(C * 4), L = I.length >= 4;
+    for (let G = 0, B = 0; G < C; G++, B += 4) {
+      const M = G * I.length;
+      R[B] = v[M], R[B + 1] = v[M + 1] || 0, R[B + 2] = v[M + 2] || 0, R[B + 3] = L ? v[M + 3] : 255;
     }
     return R;
   }
-  async function T(m, p) {
+  async function F(y, m) {
     if (typeof createImageBitmap != "function")
       throw new Error("[RawTiffPlugin] createImageBitmap is not available.");
-    const I = b(p), E = new ImageData(I, p.width, p.height);
-    return await createImageBitmap(E);
+    const x = b(m), k = new ImageData(x, m.width, m.height);
+    return await createImageBitmap(k);
   }
-  async function F(m, p) {
-    const I = await T(m, p), E = document.createElement("canvas");
-    E.width = I.width, E.height = I.height;
-    const C = E.getContext("2d", { willReadFrequently: !0 });
-    return C.drawImage(I, 0, 0), C;
+  async function S(y, m) {
+    const x = await F(y, m), k = document.createElement("canvas");
+    k.width = x.width, k.height = x.height;
+    const U = k.getContext("2d", { willReadFrequently: !0 });
+    return U.drawImage(x, 0, 0), U;
   }
-  t.converter ? (t.converter.learn("rawTiff", "tiffRaster", (m, p) => h(m, p), 2, 10), i.enableRawTiffToImageBitmap && t.converter.learn("rawTiff", "imageBitmap", (m, p) => d(m, p), 1, 5), t.converter.learn("tiffRaster", "context2d", (m, p) => F(m, p), 2, 10), t.converter.learn("tiffRaster", "imageBitmap", (m, p) => u(m, p), 1, 10), t.converter.learn("rawTiff", "gpuTextureSet", (m, p) => y(m, p), 1, 8), t.converter.learn("tiffRaster", "gpuTextureSet", (m, p) => w(m, p), 1, 12)) : t.console.warn("[RawTiffPlugin] OpenSeadragon.converter is missing. Load OSD v6+.");
-  const k = {
+  t.converter ? (t.converter.learn("rawTiff", "tiffRaster", (y, m) => l(y, m), 2, 10), i.enableRawTiffToImageBitmap && t.converter.learn("rawTiff", "imageBitmap", (y, m) => h(y, m), 1, 5), t.converter.learn("tiffRaster", "context2d", (y, m) => S(y, m), 2, 10), t.converter.learn("tiffRaster", "imageBitmap", (y, m) => g(y, m), 1, 10), t.converter.learn("rawTiff", "gpuTextureSet", (y, m) => p(y, m), 1, 8), t.converter.learn("tiffRaster", "gpuTextureSet", (y, m) => w(y, m), 1, 12)) : t.console.warn("[RawTiffPlugin] OpenSeadragon.converter is missing. Load OSD v6+.");
+  const A = {
     __installed: !0,
-    RawTiff: ie,
+    RawTiff: se,
     TiffRaster: je,
     GpuTextureSet: Ne,
     Converters: ne,
-    decodeRawTiff: h,
+    decodeRawTiff: l,
     rasterToRGBA8: b,
-    rasterToContext2d: F,
-    rasterToImageBitmap: T,
-    tiffRasterToImageBitmapViaWorker: u,
+    rasterToContext2d: S,
+    rasterToImageBitmap: F,
+    tiffRasterToImageBitmapViaWorker: g,
     getWorkerPool: a,
     terminateWorkerPool() {
-      const m = t.RawTiffPluginShared;
-      m && m.__rawTiffWorkerPool && (m.__rawTiffWorkerPool.terminate(), m.__rawTiffWorkerPool = null);
+      const y = t.RawTiffPluginShared;
+      y && y.__rawTiffWorkerPool && (y.__rawTiffWorkerPool.terminate(), y.__rawTiffWorkerPool = null);
     },
     /**
      * Convert using OpenSeadragon.converter.
@@ -3686,10 +3686,10 @@ function Jn(r, e = {}) {
      * @param {string} toType
      * @param {string} [fromType]
      */
-    convert(m, p, I, E) {
+    convert(y, m, x, k) {
       if (!t.converter) throw new Error("[RawTiffPlugin] OpenSeadragon.converter is missing.");
-      const C = E || t.converter.guessType(p);
-      return t.converter.convert(m, p, C, I);
+      const U = k || t.converter.guessType(m);
+      return t.converter.convert(y, m, U, x);
     },
     /**
      * Wrap binary as a RawTiff object.
@@ -3697,15 +3697,15 @@ function Jn(r, e = {}) {
      * @param {Object} [opts]
      * @returns {RawTiff}
      */
-    wrap(m, p) {
-      return new ie(m, p);
+    wrap(y, m) {
+      return new se(y, m);
     },
     /**
      * Expose defaults (merged).
      */
     defaults: n
   };
-  return t.RawTiffPlugin = k, k;
+  return t.RawTiffPlugin = A, A;
 }
 window.GeoTIFF = zn;
 const Qn = (r, e = {}) => {
@@ -3714,9 +3714,11 @@ const Qn = (r, e = {}) => {
   const {
     workerUrl: t,
     // optional: string or URL
-    workerPool: n
+    workerPool: n,
     // optional: { createWorker: () => Worker }
-  } = e, s = n || {
+    debug: i = !1
+    // optional: enable verbose timing logs
+  } = e, a = n || {
     createWorker: () => t ? new Worker(t, { type: "module" }) : new Worker(new URL(
       /* @vite-ignore */
       "/assets/tiff.worker-CLseKfFU.js",
@@ -3724,15 +3726,15 @@ const Qn = (r, e = {}) => {
     ), {
       type: "module"
     })
-  }, a = r.RawTiffPlugin || Jn(r, {
-    workerPool: s
+  }, o = r.RawTiffPlugin || Jn(r, {
+    workerPool: a
   });
-  let o = 0;
-  const f = class f extends r.TileSource {
+  let c = 0;
+  const u = class u extends r.TileSource {
     constructor(l, h = { logLatency: !1 }) {
       super();
-      let d = this;
-      this.input = l, this.options = h, this.channel = (l == null ? void 0 : l.channel) ?? null, this._ready = !1, this._pool = f.sharedPool, this._tileSize = 256, this._tsCounter = o, o += 1, l.GeoTIFF && l.GeoTIFFImages ? (this.promises = {
+      let g = this;
+      this.input = l, this.options = h, this.channel = (l == null ? void 0 : l.channel) ?? null, this._ready = !1, this._pool = u.sharedPool, this._tileSize = 256, this._tsCounter = c, c += 1, l.GeoTIFF && l.GeoTIFFImages ? (this.promises = {
         GeoTIFF: Promise.resolve(l.GeoTIFF),
         GeoTIFFImages: Promise.resolve(l.GeoTIFFImages),
         ready: new Ge()
@@ -3740,86 +3742,86 @@ const Qn = (r, e = {}) => {
         GeoTIFF: l instanceof File ? we(l, h.GeoTIFFOptions) : Ue(l, h.GeoTIFFOptions),
         GeoTIFFImages: new Ge(),
         ready: new Ge()
-      }, this.promises.GeoTIFF.then((u) => (d.GeoTIFF = u, u.getImageCount())).then((u) => {
-        d.imageCount = u;
-        let y = [...Array(u).keys()].map((w) => d.GeoTIFF.getImage(w));
-        return Promise.all(y);
-      }).then((u) => {
-        u = d.constructor.userDefinedImagesFilter(u, h), d.GeoTIFFImages = u, d.GeoTIFFAllImages = u, d.promises.GeoTIFFImages.resolve(u), this.setupLevels();
-      }).catch((u) => {
-        throw console.error("Re-throwing error with GeoTIFF:", u), u;
+      }, this.promises.GeoTIFF.then((p) => (g.GeoTIFF = p, p.getImageCount())).then((p) => {
+        g.imageCount = p;
+        let w = [...Array(p).keys()].map((T) => g.GeoTIFF.getImage(T));
+        return Promise.all(w);
+      }).then((p) => {
+        p = g.constructor.userDefinedImagesFilter(p, h), g.GeoTIFFImages = p, g.GeoTIFFAllImages = p, g.promises.GeoTIFFImages.resolve(p), this.setupLevels();
+      }).catch((p) => {
+        throw console.error("Re-throwing error with GeoTIFF:", p), p;
       }));
     }
     static async getAllTileSources(l, h) {
-      var A;
-      const d = l instanceof File ? l.name : typeof l == "string" ? l.split("/").pop() : "unknown", u = performance.now(), y = l instanceof File ? l.name.split(".").pop() : l.split(".").pop();
-      let w = await (l instanceof File ? we(l, h.GeoTIFFOptions) : Ue(l, h.GeoTIFFOptions));
-      const x = performance.now();
-      console.log(`⏱️ [${d}] fromUrl: ${(x - u).toFixed(0)}ms`);
-      let b = await w.getImageCount();
-      const T = performance.now();
-      console.log(`⏱️ [${d}] getImageCount(${b}): ${(T - x).toFixed(0)}ms`);
-      const F = await Promise.all(
-        Array.from({ length: b }, (G, S) => w.getImage(S))
-      ), k = performance.now();
-      console.log(`⏱️ [${d}] getImage×${b}: ${(k - T).toFixed(0)}ms`), console.log(`⏱️ [${d}] IFD dims: ${F.map((G, S) => `#${S}:${G.getWidth()}×${G.getHeight()}`).join(", ")}`);
-      const m = F.some((G) => {
-        const S = G.fileDirectory || {};
-        return S.SubIFDs && S.SubIFDs.length > 0;
+      var N;
+      const g = l instanceof File ? l.name : typeof l == "string" ? l.split("/").pop() : "unknown", p = performance.now(), w = l instanceof File ? l.name.split(".").pop() : l.split(".").pop();
+      let T = await (l instanceof File ? we(l, h.GeoTIFFOptions) : Ue(l, h.GeoTIFFOptions));
+      const b = performance.now();
+      i && console.log(`⏱️ [${g}] fromUrl: ${(b - p).toFixed(0)}ms`);
+      let F = await T.getImageCount();
+      const S = performance.now();
+      i && console.log(`⏱️ [${g}] getImageCount(${F}): ${(S - b).toFixed(0)}ms`);
+      const A = await Promise.all(
+        Array.from({ length: F }, (D, I) => T.getImage(I))
+      ), y = performance.now();
+      i && console.log(`⏱️ [${g}] getImage×${F}: ${(y - S).toFixed(0)}ms`), console.log(`⏱️ [${g}] IFD dims: ${A.map((D, I) => `#${I}:${D.getWidth()}×${D.getHeight()}`).join(", ")}`);
+      const m = A.some((D) => {
+        const I = D.fileDirectory || {};
+        return I.SubIFDs && I.SubIFDs.length > 0;
       });
-      console.log(`⏱️ [${d}] hasSubIFDs: ${m}, hasGetSubIFDs: ${typeof ((A = F[0]) == null ? void 0 : A.getSubIFDs) == "function"}`);
-      let p = Promise.resolve(w), I = this.userDefinedImagesFilter(F, h);
-      I = I.filter(
-        (G) => G.fileDirectory.PhotometricInterpretation !== z.TransparencyMask
-      ), I.sort((G, S) => S.getWidth() - G.getWidth());
-      const E = 0.015, C = I.reduce((G, S) => {
-        const D = S.getWidth() / S.getHeight();
-        let O = "";
-        S.fileDirectory.ImageDescription && (O = S.fileDirectory.ImageDescription.split(`
+      console.log(`⏱️ [${g}] hasSubIFDs: ${m}, hasGetSubIFDs: ${typeof ((N = A[0]) == null ? void 0 : N.getSubIFDs) == "function"}`);
+      let x = Promise.resolve(T), k = this.userDefinedImagesFilter(A, h);
+      k = k.filter(
+        (D) => D.fileDirectory.PhotometricInterpretation !== z.TransparencyMask
+      ), k.sort((D, I) => I.getWidth() - D.getWidth());
+      const U = 0.015, C = k.reduce((D, I) => {
+        const v = I.getWidth() / I.getHeight();
+        let R = "";
+        I.fileDirectory.ImageDescription && (R = I.fileDirectory.ImageDescription.split(`
 `)[1] ?? "");
-        const R = G.filter(
-          (L) => Math.abs(1 - L.aspectRatio / D) < E && !(O != null && O.toLowerCase().includes("macro") || O != null && O.toLowerCase().includes("label"))
+        const L = D.filter(
+          (G) => Math.abs(1 - G.aspectRatio / v) < U && !(R != null && R.toLowerCase().includes("macro") || R != null && R.toLowerCase().includes("label"))
         );
-        return R.length === 0 ? G.push({
-          aspectRatio: D,
-          images: [S]
-        }) : R[0].images.push(S), G;
+        return L.length === 0 ? D.push({
+          aspectRatio: v,
+          images: [I]
+        }) : L[0].images.push(I), D;
       }, []);
       if (C.length > 1) {
-        const G = Math.min(...C[0].images.map((S) => S.getWidth()));
-        for (let S = C.length - 1; S >= 1; S--) {
-          const D = C[S];
-          D.images.length === 1 && D.images[0].getWidth() < G && (C[0].images.push(D.images[0]), C.splice(S, 1));
+        const D = Math.min(...C[0].images.map((I) => I.getWidth()));
+        for (let I = C.length - 1; I >= 1; I--) {
+          const v = C[I];
+          v.images.length === 1 && v.images[0].getWidth() < D && (C[0].images.push(v.images[0]), C.splice(I, 1));
         }
       }
-      const v = C.map((G) => G.images), B = [];
-      for (let G = 0; G < v.length; G++) {
-        const S = v[G];
-        if (G !== 0) {
-          B.push(
+      const E = C.map((D) => D.images), P = [];
+      for (let D = 0; D < E.length; D++) {
+        const I = E[D];
+        if (D !== 0) {
+          P.push(
             new r.GeoTIFFTileSource(
               {
-                GeoTIFF: p,
-                GeoTIFFImages: S,
-                GeoTIFFAllImages: S
+                GeoTIFF: x,
+                GeoTIFFImages: I,
+                GeoTIFFAllImages: I
               },
               h
             )
           );
           continue;
         }
-        if (y === "qptiff") {
-          const R = Kn(S);
-          for (const L of R.values())
-            B.push(
+        if (w === "qptiff") {
+          const L = Kn(I);
+          for (const G of L.values())
+            P.push(
               new r.GeoTIFFTileSource(
                 {
-                  GeoTIFF: p,
-                  GeoTIFFImages: L.images,
-                  GeoTIFFAllImages: L.images,
+                  GeoTIFF: x,
+                  GeoTIFFImages: G.images,
+                  GeoTIFFAllImages: G.images,
                   channel: {
-                    name: L.name,
-                    color: L.color
+                    name: G.name,
+                    color: G.color
                   }
                 },
                 h
@@ -3827,19 +3829,19 @@ const Qn = (r, e = {}) => {
             );
           continue;
         }
-        const D = await this.resolveLayout(p, S, h.hints), O = await this.buildLevelImages(p, D, p);
-        B.push(
+        const v = await this.resolveLayout(x, I, h.hints), R = await this.buildLevelImages(x, v, x);
+        P.push(
           new r.GeoTIFFTileSource(
             {
-              GeoTIFF: p,
-              GeoTIFFImages: O,
-              GeoTIFFAllImages: S
+              GeoTIFF: x,
+              GeoTIFFImages: R,
+              GeoTIFFAllImages: I
             },
             h
           )
         );
       }
-      return B;
+      return P;
     }
     /**
      * Return the tileWidth for a given level.
@@ -3870,9 +3872,9 @@ const Qn = (r, e = {}) => {
     /**
      * Handle maintaining unique caches per channel in multi-channel images
      */
-    getTileHashKey(l, h, d) {
-      var u;
-      return `geotiffTileSource${this._tsCounter}_${((u = this == null ? void 0 : this.channel) == null ? void 0 : u.name) ?? ""}_${l}_${h}_${d}`;
+    getTileHashKey(l, h, g) {
+      var p;
+      return `geotiffTileSource${this._tsCounter}_${((p = this == null ? void 0 : this.channel) == null ? void 0 : p.name) ?? ""}_${l}_${h}_${g}`;
     }
     /**
      * Implement function here instead of as custom tile source in client code
@@ -3881,25 +3883,25 @@ const Qn = (r, e = {}) => {
      * @param {Number} x
      * @param {Number} y
      */
-    getTileUrl(l, h, d) {
-      return `${l}/${h}_${d}`;
+    getTileUrl(l, h, g) {
+      return `${l}/${h}_${g}`;
     }
     downloadTileStart(l) {
-      const h = !!r.converter && typeof l.fail == "function", d = "" + l.src, u = `${l.tile.level}/${l.tile.x}_${l.tile.y}`, y = new AbortController();
-      l.userData && (l.userData.abortController = y);
-      const w = this.levels[l.tile.level], x = performance.now();
-      this.regionToTiffRaster(w, l.tile.x, l.tile.y, y.signal).then(async (b) => {
-        const T = performance.now();
+      const h = !!r.converter && typeof l.fail == "function", g = "" + l.src, p = `${l.tile.level}/${l.tile.x}_${l.tile.y}`, w = new AbortController();
+      l.userData && (l.userData.abortController = w);
+      const T = this.levels[l.tile.level], b = performance.now();
+      this.regionToTiffRaster(T, l.tile.x, l.tile.y, w.signal).then(async (F) => {
+        const S = performance.now();
         if (h) {
-          const m = await a.tiffRasterToImageBitmapViaWorker(l.tile, b), p = performance.now();
-          p - x > 500 && console.log(`🔲 Tile ${u} | fetch+decode: ${(T - x).toFixed(0)}ms | render: ${(p - T).toFixed(0)}ms | total: ${(p - x).toFixed(0)}ms`), l.finish(m, d, "imageBitmap");
+          const m = await o.tiffRasterToImageBitmapViaWorker(l.tile, F), x = performance.now();
+          this.options.debug && console.log(`🔲 Tile ${p} | fetch+decode: ${(S - b).toFixed(0)}ms | render: ${(x - S).toFixed(0)}ms | total: ${(x - b).toFixed(0)}ms`), l.finish(m, g, "imageBitmap");
           return;
         }
-        const F = await Promise.resolve(a.rasterToContext2d(l.tile, b)), k = performance.now();
-        k - x > 500 && console.log(`🔲 Tile ${u} | fetch+decode: ${(T - x).toFixed(0)}ms | render: ${(k - T).toFixed(0)}ms | total: ${(k - x).toFixed(0)}ms`), l.finish(F.canvas);
-      }).catch((b) => {
-        const T = performance.now(), F = b && b.message ? b.message : String(b);
-        console.warn(`❌ Tile ${u} FAILED after ${(T - x).toFixed(0)}ms: ${F}`), h ? l.fail(F) : l.finish(null, d, F);
+        const A = await Promise.resolve(o.rasterToContext2d(l.tile, F)), y = performance.now();
+        this.options.debug && console.log(`🔲 Tile ${p} | fetch+decode: ${(S - b).toFixed(0)}ms | render: ${(y - S).toFixed(0)}ms | total: ${(y - b).toFixed(0)}ms`), l.finish(A.canvas);
+      }).catch((F) => {
+        const S = performance.now(), A = F && F.message ? F.message : String(F);
+        console.warn(`❌ Tile ${p} FAILED after ${(S - b).toFixed(0)}ms: ${A}`), h ? l.fail(A) : l.finish(null, g, A);
       });
     }
     downloadTileAbort(l) {
@@ -3912,48 +3914,48 @@ const Qn = (r, e = {}) => {
     setupLevels() {
       if (this._ready)
         return;
-      let l = this.GeoTIFFImages.sort((x, b) => b.getWidth() - x.getWidth()), h = this._tileSize, d = this._tileSize, u = l[0].getWidth();
-      this.width = u;
-      let y = l[0].getHeight();
-      if (this.height = y, this.tileOverlap = 0, this.minLevel = 0, this.aspectRatio = this.width / this.height, this.dimensions = new r.Point(this.width, this.height), l.reduce(
-        (x, b) => (x.width !== -1 && (x.valid = x.valid && b.getWidth() < x.width), x.width = b.getWidth(), x),
+      let l = this.GeoTIFFImages.sort((b, F) => F.getWidth() - b.getWidth()), h = this._tileSize, g = this._tileSize, p = l[0].getWidth();
+      this.width = p;
+      let w = l[0].getHeight();
+      if (this.height = w, this.tileOverlap = 0, this.minLevel = 0, this.aspectRatio = this.width / this.height, this.dimensions = new r.Point(this.width, this.height), l.reduce(
+        (b, F) => (b.width !== -1 && (b.valid = b.valid && F.getWidth() < b.width), b.width = F.getWidth(), b),
         { valid: !0, width: -1 }
       ).valid)
-        this.levels = l.map((x) => {
-          let b = x.getWidth(), T = x.getHeight();
+        this.levels = l.map((b) => {
+          let F = b.getWidth(), S = b.getHeight();
           return {
-            width: b,
-            height: T,
-            tileWidth: this.options.tileWidth || x.getTileWidth() || h,
-            tileHeight: this.options.tileHeight || x.getTileHeight() || d,
-            image: x,
+            width: F,
+            height: S,
+            tileWidth: this.options.tileWidth || b.getTileWidth() || h,
+            tileHeight: this.options.tileHeight || b.getTileHeight() || g,
+            image: b,
             scaleFactor: 1
           };
         }), this.maxLevel = this.levels.length - 1;
       else {
-        let x = Math.ceil(
-          Math.log2(Math.max(u / h, y / d))
-        ), b = [...Array(x).keys()].filter((T) => T % 2 == 0);
-        this.levels = b.map((T) => {
-          let F = Math.pow(2, T);
-          const k = l.filter((p) => {
-            const I = Math.pow(2, T - 1);
-            return I >= 0 ? p.getWidth() * I < u && p.getWidth() * F >= u : p.getWidth() * F >= u;
+        let b = Math.ceil(
+          Math.log2(Math.max(p / h, w / g))
+        ), F = [...Array(b).keys()].filter((S) => S % 2 == 0);
+        this.levels = F.map((S) => {
+          let A = Math.pow(2, S);
+          const y = l.filter((x) => {
+            const k = Math.pow(2, S - 1);
+            return k >= 0 ? x.getWidth() * k < p && x.getWidth() * A >= p : x.getWidth() * A >= p;
           });
-          if (k.length === 0)
+          if (y.length === 0)
             return null;
-          const m = k[0];
+          const m = y[0];
           return {
-            width: u / F,
-            height: y / F,
+            width: p / A,
+            height: w / A,
             tileWidth: this.options.tileWidth || m.getTileWidth() || h,
-            tileHeight: this.options.tileHeight || m.getTileHeight() || d,
+            tileHeight: this.options.tileHeight || m.getTileHeight() || g,
             image: m,
-            scaleFactor: F * m.getWidth() / u
+            scaleFactor: A * m.getWidth() / p
           };
-        }).filter((T) => T !== null), this.maxLevel = this.levels.length - 1;
+        }).filter((S) => S !== null), this.maxLevel = this.levels.length - 1;
       }
-      this.levels = this.levels.sort((x, b) => x.width - b.width), this._tileWidth = this.levels[0].tileWidth, this._tileHeight = this.levels[0].tileHeight, this.setupComplete();
+      this.levels = this.levels.sort((b, F) => b.width - F.width), this._tileWidth = this.levels[0].tileWidth, this._tileHeight = this.levels[0].tileHeight, this.setupComplete();
     }
     static getGeoTiffFileDirectory(l) {
       var h;
@@ -3973,114 +3975,114 @@ const Qn = (r, e = {}) => {
      * participate in IFD pyramid detection when mixed with the main slide.
      */
     static isSvsStyleCompanionPage(l) {
-      var y;
-      const h = (y = l.fileDirectory) == null ? void 0 : y.ImageDescription;
+      var w;
+      const h = (w = l.fileDirectory) == null ? void 0 : w.ImageDescription;
       if (typeof h != "string" || !h) return !1;
-      const u = (h.split(`
+      const p = (h.split(`
 `)[1] ?? "").toLowerCase();
-      return u.includes("macro") || u.includes("label");
+      return p.includes("macro") || p.includes("label");
     }
     static _uniqueByDecreasingSize(l) {
-      const h = l.map((y) => ({ im: y, w: y.getWidth(), h: y.getHeight() })).sort((y, w) => w.w - y.w), d = [], u = /* @__PURE__ */ new Set();
-      for (const { im: y, w, h: x } of h) {
-        const b = `${w}x${x}`;
-        u.has(b) || (u.add(b), d.push(y));
+      const h = l.map((w) => ({ im: w, w: w.getWidth(), h: w.getHeight() })).sort((w, T) => T.w - w.w), g = [], p = /* @__PURE__ */ new Set();
+      for (const { im: w, w: T, h: b } of h) {
+        const F = `${T}x${b}`;
+        p.has(F) || (p.add(F), g.push(w));
       }
-      return d;
+      return g;
     }
-    static async resolveLayout(l, h, d = {}) {
-      const u = d.layout || {}, y = u.pyramid || "auto", w = Number.isFinite(u.planeIndex) ? u.planeIndex : 0, x = u.prefer === "stack" ? "stack" : "pyramid", b = /* @__PURE__ */ new Map();
-      for (const P of h) {
-        const U = this.getGeoTiffFileKey(P);
-        P.__key = U;
-        const _ = b.get(U) || [];
-        _.push(P), b.set(U, _);
+    static async resolveLayout(l, h, g = {}) {
+      const p = g.layout || {}, w = p.pyramid || "auto", T = Number.isFinite(p.planeIndex) ? p.planeIndex : 0, b = p.prefer === "stack" ? "stack" : "pyramid", F = /* @__PURE__ */ new Map();
+      for (const B of h) {
+        const M = this.getGeoTiffFileKey(B);
+        B.__key = M;
+        const _ = F.get(M) || [];
+        _.push(B), F.set(M, _);
       }
-      const T = this._uniqueByDecreasingSize(h), F = h.filter((P) => !this.isSvsStyleCompanionPage(P)), k = this._uniqueByDecreasingSize(F), m = (P) => {
-        if (P.length < 2) return !1;
-        for (let _ = 1; _ < P.length; _++)
-          if (P[_].getWidth() >= P[_ - 1].getWidth() || P[_].getHeight() >= P[_ - 1].getHeight()) return !1;
-        const U = P[0].getWidth() / P[0].getHeight();
-        for (const _ of P) {
-          const N = _.getWidth() / _.getHeight(), W = Math.abs(N - U) / U, V = Math.min(_.getWidth(), _.getHeight()), Y = V < 64 ? 0.1 : V < 256 ? 0.05 : 0.01;
-          if (W > Y) return !1;
+      const S = this._uniqueByDecreasingSize(h), A = h.filter((B) => !this.isSvsStyleCompanionPage(B)), y = this._uniqueByDecreasingSize(A), m = (B) => {
+        if (B.length < 2) return !1;
+        for (let _ = 1; _ < B.length; _++)
+          if (B[_].getWidth() >= B[_ - 1].getWidth() || B[_].getHeight() >= B[_ - 1].getHeight()) return !1;
+        const M = B[0].getWidth() / B[0].getHeight();
+        for (const _ of B) {
+          const W = _.getWidth() / _.getHeight(), Y = Math.abs(W - M) / M, V = Math.min(_.getWidth(), _.getHeight()), ie = V < 64 ? 0.1 : V < 256 ? 0.05 : 0.01;
+          if (Y > ie) return !1;
         }
         return !0;
-      }, p = m(T), I = m(k), E = h.some(
-        (P) => this.isSvsStyleCompanionPage(P)
+      }, x = m(S), k = m(y), U = h.some(
+        (B) => this.isSvsStyleCompanionPage(B)
       );
-      let C = p, v = !C && I;
-      E && I && (v = !0, C = !1);
-      const B = C || v, A = C ? T : v ? k : T, G = h.some((P) => {
-        const U = this.getGeoTiffFileDirectory(P).SubIFDs;
-        return U && U.length;
+      let C = x, E = !C && k;
+      U && k && (E = !0, C = !1);
+      const P = C || E, N = C ? S : E ? y : S, D = h.some((B) => {
+        const M = this.getGeoTiffFileDirectory(B).SubIFDs;
+        return M && M.length;
       });
-      let S = "single";
-      y === "ifd" ? S = B ? "ifd" : "single" : y === "subifd" ? S = G ? "subifd" : "single" : B ? S = "ifd" : G ? S = "subifd" : S = "single";
-      const D = T[0], O = D.__key, R = b.get(O) || [D], L = R[Math.max(0, Math.min(R.length - 1, w))];
-      return x === "stack" && R.length > 1 && S === "ifd" && (S = "single"), S === "subifd" && typeof L.getSubIFDs != "function" && (te(`${L.__key}-subifd-warn`, "[GeoTIFFTileSource] SubIFD pyramids detected but geotiff.js doesn't expose getSubIFDs(). Falling back to single level.", "warn"), S = "single"), console.log(`⏱️ resolveLayout: strategy=${S}, effectiveIfdPyramid=${B}, anyHasSubIFD=${G}, uniqueCount=${T.length}, planes=${R.length}`), { strategy: S, planes: R, chosenPlane: L, ifdLevelsLargestToSmallest: A };
+      let I = "single";
+      w === "ifd" ? I = P ? "ifd" : "single" : w === "subifd" ? I = D ? "subifd" : "single" : P ? I = "ifd" : D ? I = "subifd" : I = "single";
+      const v = S[0], R = v.__key, L = F.get(R) || [v], G = L[Math.max(0, Math.min(L.length - 1, T))];
+      return b === "stack" && L.length > 1 && I === "ifd" && (I = "single"), I === "subifd" && typeof G.getSubIFDs != "function" && (te(`${G.__key}-subifd-warn`, "[GeoTIFFTileSource] SubIFD pyramids detected but geotiff.js doesn't expose getSubIFDs(). Falling back to single level.", "warn"), I = "single"), console.log(`⏱️ resolveLayout: strategy=${I}, effectiveIfdPyramid=${P}, anyHasSubIFD=${D}, uniqueCount=${S.length}, planes=${L.length}`), { strategy: I, planes: L, chosenPlane: G, ifdLevelsLargestToSmallest: N };
     }
-    static async buildLevelImages(l, h, d) {
-      const { strategy: u, chosenPlane: y, ifdLevelsLargestToSmallest: w, planes: x } = h, b = (T) => {
-        var F;
-        return ((F = T.getFileDirectory) == null ? void 0 : F.call(T)) ?? T.fileDirectory ?? {};
+    static async buildLevelImages(l, h, g) {
+      const { strategy: p, chosenPlane: w, ifdLevelsLargestToSmallest: T, planes: b } = h, F = (S) => {
+        var A;
+        return ((A = S.getFileDirectory) == null ? void 0 : A.call(S)) ?? S.fileDirectory ?? {};
       };
-      if (u === "ifd") {
-        const T = [...w].sort((F, k) => F.getWidth() - k.getWidth());
-        return x.length > 1 && te(d, `[GeoTIFFTileSource] Detected a plane stack (${x.length} same-size IFDs) AND a top-level pyramid. Defaulting to planeIndex=0. Set hints.layout.planeIndex to choose a different plane.`, "warn"), T;
+      if (p === "ifd") {
+        const S = [...T].sort((A, y) => A.getWidth() - y.getWidth());
+        return b.length > 1 && te(g, `[GeoTIFFTileSource] Detected a plane stack (${b.length} same-size IFDs) AND a top-level pyramid. Defaulting to planeIndex=0. Set hints.layout.planeIndex to choose a different plane.`, "warn"), S;
       }
-      if (u === "subifd") {
-        const F = b(y).SubIFDs;
-        if (!F || !F.length)
-          return te(d, "[GeoTIFFTileSource] SubIFD pyramid requested/detected but the chosen plane has no SubIFDs. Falling back to single level.", "warn"), [y];
-        if (typeof y.getSubIFDs == "function") {
-          const m = [...await y.getSubIFDs(), y].sort((p, I) => p.getWidth() - I.getWidth());
-          return x.length > 1 && te(d, `[GeoTIFFTileSource] Detected a plane stack (${x.length} same-size IFDs) with SubIFD pyramid. Defaulting to planeIndex=0. Set hints.layout.planeIndex to choose plane.`, "warn"), m;
+      if (p === "subifd") {
+        const A = F(w).SubIFDs;
+        if (!A || !A.length)
+          return te(g, "[GeoTIFFTileSource] SubIFD pyramid requested/detected but the chosen plane has no SubIFDs. Falling back to single level.", "warn"), [w];
+        if (typeof w.getSubIFDs == "function") {
+          const m = [...await w.getSubIFDs(), w].sort((x, k) => x.getWidth() - k.getWidth());
+          return b.length > 1 && te(g, `[GeoTIFFTileSource] Detected a plane stack (${b.length} same-size IFDs) with SubIFD pyramid. Defaulting to planeIndex=0. Set hints.layout.planeIndex to choose plane.`, "warn"), m;
         }
-        return te(d, "[GeoTIFFTileSource] SubIFDs are present but geotiff.js does not expose getSubIFDs() in this build. Using single level. (You can still render multi-plane data via your GPU pipeline.)", "warn"), [y];
+        return te(g, "[GeoTIFFTileSource] SubIFDs are present but geotiff.js does not expose getSubIFDs() in this build. Using single level. (You can still render multi-plane data via your GPU pipeline.)", "warn"), [w];
       }
-      return x.length > 1 && te(d, `[GeoTIFFTileSource] Detected ${x.length} same-size IFD pages (likely channels/planes). No pyramid detected. Defaulting to planeIndex=0. Set hints.layout.planeIndex to choose plane.`, "warn"), [y];
+      return b.length > 1 && te(g, `[GeoTIFFTileSource] Detected ${b.length} same-size IFD pages (likely channels/planes). No pyramid detected. Defaulting to planeIndex=0. Set hints.layout.planeIndex to choose plane.`, "warn"), [w];
     }
-    regionToTiffRaster(l, h, d, u) {
-      var m, p, I, E;
-      const y = this.options.logLatency && Date.now(), w = l.tileWidth, x = l.tileHeight, b = [h * w, d * x, (h + 1) * w, (d + 1) * x].map(
+    regionToTiffRaster(l, h, g, p) {
+      var m, x, k, U;
+      const w = this.options.logLatency && Date.now(), T = l.tileWidth, b = l.tileHeight, F = [h * T, g * b, (h + 1) * T, (g + 1) * b].map(
         (C) => C * l.scaleFactor
-      ), T = l.image, F = (p = (m = T.fileDirectory) == null ? void 0 : m.Software) == null ? void 0 : p.startsWith("PerkinElmer-QPI");
-      let k = null;
-      if (F && ((I = T.fileDirectory) != null && I.ImageDescription))
+      ), S = l.image, A = (x = (m = S.fileDirectory) == null ? void 0 : m.Software) == null ? void 0 : x.startsWith("PerkinElmer-QPI");
+      let y = null;
+      if (A && ((k = S.fileDirectory) != null && k.ImageDescription))
         try {
-          const v = (E = new DOMParser().parseFromString(T.fileDirectory.ImageDescription, "text/xml").querySelector("Color")) == null ? void 0 : E.textContent;
-          k = v ? v.split(",").map((B) => parseInt(B, 10)) : null;
+          const E = (U = new DOMParser().parseFromString(S.fileDirectory.ImageDescription, "text/xml").querySelector("Color")) == null ? void 0 : U.textContent;
+          y = E ? E.split(",").map((P) => parseInt(P, 10)) : null;
         } catch {
-          k = null;
+          y = null;
         }
-      return T.readRasters({
+      return S.readRasters({
         interleave: !1,
-        window: b,
+        window: F,
         pool: this._pool,
-        width: w,
-        height: x,
-        signal: u
+        width: T,
+        height: b,
+        signal: p
       }).then((C) => {
-        const v = Array.isArray(C) ? C : [C], B = T.fileDirectory || {}, A = new a.TiffRaster({
-          width: w,
-          height: x,
-          bands: v,
-          samplesPerPixel: Math.max(B.SamplesPerPixel || 0, v.length),
-          bitsPerSample: B.BitsPerSample || [8],
-          sampleFormat: B.SampleFormat || null,
-          photometricInterpretation: B.PhotometricInterpretation,
-          colorMap: B.ColorMap || null,
-          fileDirectory: B,
+        const E = Array.isArray(C) ? C : [C], P = S.fileDirectory || {}, N = new o.TiffRaster({
+          width: T,
+          height: b,
+          bands: E,
+          samplesPerPixel: Math.max(P.SamplesPerPixel || 0, E.length),
+          bitsPerSample: P.BitsPerSample || [8],
+          sampleFormat: P.SampleFormat || null,
+          photometricInterpretation: P.PhotometricInterpretation,
+          colorMap: P.ColorMap || null,
+          fileDirectory: P,
           hints: {
             ...this.channel ? { channel: this.channel } : {},
-            ...k ? { tintRGB: k } : {}
+            ...y ? { tintRGB: y } : {}
           }
         });
         return this.options.logLatency && (typeof this.options.logLatency == "function" ? this.options.logLatency : console.log)(
           "Tile decode latency (ms):",
-          Date.now() - y
-        ), A;
+          Date.now() - w
+        ), N;
       });
     }
   };
@@ -4093,9 +4095,9 @@ const Qn = (r, e = {}) => {
    * @static sharedPool
    * @type {Pool}
    */
-  Re(f, "sharedPool", new Ut()), Re(f, "userDefinedImagesFilter", (l, h) => (typeof h.imagesFilter < "u" && h.imagesFilter && (Array.isArray(h.imagesFilter) ? l = l.filter((d, u) => h.imagesFilter.includes(u)) : typeof h.imagesFilter == "function" && (l = l.filter(h.imagesFilter)), h.imagesFilter = void 0), l));
-  let c = f;
-  r.GeoTIFFTileSource = c;
+  Re(u, "sharedPool", new Ut()), Re(u, "userDefinedImagesFilter", (l, h) => (typeof h.imagesFilter < "u" && h.imagesFilter && (Array.isArray(h.imagesFilter) ? l = l.filter((g, p) => h.imagesFilter.includes(p)) : typeof h.imagesFilter == "function" && (l = l.filter(h.imagesFilter)), h.imagesFilter = void 0), l));
+  let f = u;
+  r.GeoTIFFTileSource = f;
 };
 (function(r, e) {
   typeof exports > "u" || typeof r.OpenSeadragon < "u" && e(r.OpenSeadragon);
@@ -4107,4 +4109,4 @@ export {
   Qn as e,
   It as g
 };
-//# sourceMappingURL=main-BIrvPNsV.js.map
+//# sourceMappingURL=main-BO1NunQU.js.map

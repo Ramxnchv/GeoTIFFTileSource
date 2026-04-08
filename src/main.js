@@ -16,6 +16,7 @@ window.GeoTIFF = gtiff;
  * @param {Object} options - Options object.
  * @param {String} options.workerUrl - URL of the worker script to use for GeoTIFF conversion. Defaults to the worker script bundled with this library.
  * @param {Object} options.workerPool - Worker pool to use for GeoTIFF conversion. Defaults to a new pool created for this instance.
+ * @param {Boolean} [options.debug=false] - When true, logs verbose timing for fromUrl, getImageCount, getImage, and per-tile fetch/decode/render. IFD dims and resolveLayout strategy are always logged regardless of this flag.
  */
 export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
 
@@ -28,6 +29,7 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
   const {
     workerUrl,     // optional: string or URL
     workerPool,    // optional: { createWorker: () => Worker }
+    debug = false, // optional: enable verbose timing logs
   } = options;
 
   const defaultCreateWorker = () => {
@@ -162,17 +164,17 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
         input instanceof File ? fromBlob(input, opts.GeoTIFFOptions) : fromUrl(input, opts.GeoTIFFOptions)
       );
       const t1 = performance.now();
-      console.log(`⏱️ [${inputName}] fromUrl: ${(t1-t0).toFixed(0)}ms`);
+      if (debug) console.log(`⏱️ [${inputName}] fromUrl: ${(t1-t0).toFixed(0)}ms`);
 
       let imageCount = await tiff.getImageCount();
       const t2 = performance.now();
-      console.log(`⏱️ [${inputName}] getImageCount(${imageCount}): ${(t2-t1).toFixed(0)}ms`);
+      if (debug) console.log(`⏱️ [${inputName}] getImageCount(${imageCount}): ${(t2-t1).toFixed(0)}ms`);
 
       const images = await Promise.all(
         Array.from({ length: imageCount }, (_, i) => tiff.getImage(i))
       );
       const t3 = performance.now();
-      console.log(`⏱️ [${inputName}] getImage×${imageCount}: ${(t3-t2).toFixed(0)}ms`);
+      if (debug) console.log(`⏱️ [${inputName}] getImage×${imageCount}: ${(t3-t2).toFixed(0)}ms`);
       console.log(`⏱️ [${inputName}] IFD dims: ${images.map((im, idx) => `#${idx}:${im.getWidth()}×${im.getHeight()}`).join(', ')}`);
       const hasSubIFDs = images.some(im => { const fd = im.fileDirectory || {}; return fd.SubIFDs && fd.SubIFDs.length > 0; });
       console.log(`⏱️ [${inputName}] hasSubIFDs: ${hasSubIFDs}, hasGetSubIFDs: ${typeof images[0]?.getSubIFDs === 'function'}`);
@@ -371,7 +373,7 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
           if (isV6) {
             const imageBitmap = await RawTiffAPI.tiffRasterToImageBitmapViaWorker(context.tile, tiffRaster);
             const t2 = performance.now();
-            if (t2 - t0 > 500) {
+            if (this.options.debug) {
               console.log(`🔲 Tile ${tileKey} | fetch+decode: ${(t1-t0).toFixed(0)}ms | render: ${(t2-t1).toFixed(0)}ms | total: ${(t2-t0).toFixed(0)}ms`);
             }
             context.finish(imageBitmap, request, "imageBitmap");
@@ -381,7 +383,7 @@ export const enableGeoTIFFTileSource = (OpenSeadragon, options={}) => {
           // OSD < v6: canvas2d is the required output type.
           const ctx = await Promise.resolve(RawTiffAPI.rasterToContext2d(context.tile, tiffRaster));
           const t2 = performance.now();
-          if (t2 - t0 > 500) {
+          if (this.options.debug) {
             console.log(`🔲 Tile ${tileKey} | fetch+decode: ${(t1-t0).toFixed(0)}ms | render: ${(t2-t1).toFixed(0)}ms | total: ${(t2-t0).toFixed(0)}ms`);
           }
           context.finish(ctx.canvas);
